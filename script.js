@@ -391,3 +391,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Use the pause-aware version
     animateWithPause();
 });
+
+

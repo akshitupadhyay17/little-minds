@@ -70,18 +70,18 @@
         <div class="hero-stats">
             <div class="stat-item">
                 <i class="fas fa-calendar-alt"></i>
-                <span class="stat-number">15+</span>
+                <span class="stat-number">13+</span>
                 <span class="stat-label">Years of Excellence</span>
-            </div>
-            <div class="stat-item">
-                <i class="fas fa-users"></i>
-                <span class="stat-number">500+</span>
-                <span class="stat-label">Happy Students</span>
             </div>
             <div class="stat-item">
                 <i class="fas fa-trophy"></i>
                 <span class="stat-number">100%</span>
-                <span class="stat-label">Success Rate</span>
+                <span class="stat-label">Happiness Rate</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">2000+</span>
+                <span class="stat-label">Alumni</span>
             </div>
         </div>
         
@@ -313,7 +313,7 @@
             <!-- Program Container 4: Additional Programs -->
             <div class="program-container">
                 <div class="container-header">
-                    <h3>Additional Programs</h3>
+                    <h3>Value Added Programs</h3>
                 </div>
                 <div class="cards-wrapper-three">
                     <div class="program-card-new" onclick="openModal('day-care')">
@@ -353,6 +353,7 @@
         <div id="modal-body"></div>
     </div>
 </div>
+
 
 
     <!-- ===== ALUMNI SECTION ===== -->
@@ -475,6 +476,97 @@
     </div>
 </section>
 
+<!-- ===== TESTIMONIALS SECTION ===== -->
+<section class="testimonials-section" id="testimonials">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Parents Say</h2>
+            <p>Hear from the families who trust us with their children's early education journey</p>
+        </div>
+        
+        <div class="testimonials-container">
+            <div class="testimonials-wrapper" id="testimonialsWrapper">
+                <button class="nav-btn left-btn" id="prevTestimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div id="testimonial-cards" class="testimonial-cards-container">
+                    <div class="testimony-card active">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimony-content">
+                            <p>"LM Educational Center has been absolutely wonderful for our daughter. The teachers are caring and professional, and the learning environment is both nurturing and stimulating. We've seen tremendous growth in her confidence and social skills."</p>
+                        </div>
+                        <div class="testimony-author">
+                            <img src="img/testimonials/parent1.jpg" alt="Sarah Johnson">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <span>Parent of Emma, Age 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimony-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimony-content">
+                            <p>"The individual attention each child receives is remarkable. My son went from being shy and hesitant to confident and eager to learn. The curriculum is well-balanced and the facilities are top-notch."</p>
+                        </div>
+                        <div class="testimony-author">
+                            <img src="img/testimonials/parent2.jpg" alt="Michael Chen">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Parent of Alex, Age 5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimony-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="testimony-content">
+                            <p>"What sets LM Educational Center apart is their genuine care for each child's development. The teachers know every child by name and tailor their approach accordingly. It truly feels like an extended family."</p>
+                        </div>
+                        <div class="testimony-author">
+                            <img src="img/testimonials/parent3.jpg" alt="Lisa Rodriguez">
+                            <div class="author-info">
+                                <h4>Lisa Rodriguez</h4>
+                                <span>Parent of Sofia, Age 3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="nav-btn right-btn" id="nextTestimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="testimonial-dots" id="testimonialDots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- Social Section (replacing Gallery Preview) -->
 <section id="social" class="social-section fade-in">
     <div class="container">
@@ -589,20 +681,12 @@
                                     <label for="grade">Interested Grade</label>
                                     <select id="grade" name="grade">
                                         <option value="">Select Grade</option>
-                                        <option value="pre-k">Pre-K</option>
-                                        <option value="kindergarten">Kindergarten</option>
-                                        <option value="grade-1">Grade 1</option>
-                                        <option value="grade-2">Grade 2</option>
-                                        <option value="grade-3">Grade 3</option>
-                                        <option value="grade-4">Grade 4</option>
-                                        <option value="grade-5">Grade 5</option>
-                                        <option value="grade-6">Grade 6</option>
-                                        <option value="grade-7">Grade 7</option>
-                                        <option value="grade-8">Grade 8</option>
-                                        <option value="grade-9">Grade 9</option>
-                                        <option value="grade-10">Grade 10</option>
-                                        <option value="grade-11">Grade 11</option>
-                                        <option value="grade-12">Grade 12</option>
+                                        <option value="pre-k">Pre-Nursery</option>
+                                        <option value="kindergarten">Nursery</option>
+                                        <option value="grade-1">Junior KG</option>
+                                        <option value="grade-2">Senior KG</option>
+                                        <option value="grade-3">Class 1</option>
+                                        <option value="grade-4">Class 2</option>
                                     </select>
                                 </div>
                             </div>
@@ -656,17 +740,23 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Newsletter</h3>
-                    <p>Stay updated with our latest news</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
+    <h3>Opportunities</h3>
+    <div class="opportunity-links">
+        <a href="#franchise" class="opportunity-link franchise-link">
+            <i class="fas fa-handshake"></i>
+            <span>Franchise with Us</span>
+        </a>
+        <a href="#hiring" class="opportunity-link hiring-link">
+            <i class="fas fa-users"></i>
+            <span>Join Our Team</span>
+        </a>
+    </div>
+</div>
+
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Little Minds® Foundation School. All rights reserved.</p>
+                <p>&copy; 2025 Little Minds® Foundation School. All rights reserved.</p>
             </div>
         </div>
     </footer>
