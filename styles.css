@@ -2735,3 +2735,368 @@ html, body{
   box-shadow: 0 12px 28px rgba(40,32,108,0.18);
   border-radius: 20px;
 }
+
+/* ===== TESTIMONIALS (polished, no overflow) ===== */
+.testimonies{
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #eceaff 0%, #e2deff 100%);
+  position: relative;
+}
+
+/* wrapper centers arrows and track */
+.testimonials-wrapper{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Container for cards: taller to avoid overflow on 3 lines of text + meta */
+#testimonial-cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  overflow: visible;                 /* no clipping */
+  min-height: 380px;                 /* increased container height */
+}
+
+/* Card styling */
+.testimony-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(40,32,108,0.14);
+  box-shadow: 0 12px 28px rgba(40,32,108,0.12);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  min-height: 340px;                 /* taller card for content */
+}
+
+.testimony-card:hover{
+  transform: translateY(-6px);
+  border-color: #28206c;
+  box-shadow: 0 18px 40px rgba(40,32,108,0.2);
+}
+
+/* Stars and text */
+.stars{ color:#FFD600; font-size:1.1rem; margin-bottom:.75rem; }
+.testimony-content{ margin: 1rem 0; }
+.testimony-content p{
+  color:#322353;
+  font-style: italic;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Author row */
+.testimony-author{
+  display:flex; align-items:center; gap:1rem; margin-top:1.25rem;
+}
+.testimony-author img{
+  width:56px; height:56px; border-radius:50%; object-fit:cover;
+  box-shadow: 0 6px 14px rgba(40,32,108,0.18);
+}
+.author-info h4{ color:#322353; font-size:1.05rem; margin:0 0 .2rem 0; font-weight:700; }
+.author-info span{ color:#703ce1; font-size:.9rem; }
+
+/* Nav buttons (if used) */
+.left-btn, .right-btn{
+  background:#28206c; color:#fff; border:none; width:42px; height:42px;
+  border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 20px rgba(40,32,108,0.2);
+}
+.left-btn:hover, .right-btn:hover{ background:#3a3191; transform: translateY(-2px); }
+
+/* Responsive adjustments */
+@media (max-width: 1024px){
+  #testimonial-cards{
+    grid-template-columns: repeat(2, 1fr);
+    min-height: 380px;              /* keep headroom on tablet */
+  }
+}
+
+@media (max-width: 768px){
+  .testimonies{ padding: 4rem 0; }
+  #testimonial-cards{
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    min-height: 360px;              /* single card height */
+  }
+  .testimony-card{ min-height: 320px; padding: 1.5rem; }
+  .left-btn, .right-btn{ display:none; }
+}
+
+/* Optional: clamp testimonial text to avoid extreme lengths while preventing overflow */
+.testimony-content p{
+  display: -webkit-box;
+  -webkit-line-clamp: 6;           /* show up to ~6 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Remove ALL animations/transitions from Testimonials section */
+.testimonies,
+.testimonials-wrapper,
+#testimonial-cards,
+.testimony-card,
+.left-btn,
+.right-btn {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Static layout: 3/2/1 responsive grid, no movement, no hover lift */
+#testimonial-cards{
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  overflow: visible;
+  min-height: 360px;
+}
+
+.testimony-card{
+  transform: none !important;
+  box-shadow: 0 10px 24px rgba(40,32,108,0.12);
+  border: 1px solid rgba(40,32,108,0.14);
+}
+.testimony-card:hover{
+  transform: none !important;
+  box-shadow: 0 10px 24px rgba(40,32,108,0.12) !important;
+  border-color: rgba(40,32,108,0.14) !important;
+}
+
+/* Buttons stay visible but static */
+.left-btn, .right-btn{
+  transform: none !important;
+  box-shadow: none !important;
+}
+.left-btn:hover, .right-btn:hover{
+  transform: none !important;
+  background: #28206c; /* keep theme color */
+}
+
+/* Responsive */
+@media (max-width:1024px){
+  #testimonial-cards{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width:768px){
+  #testimonial-cards{ grid-template-columns: 1fr; }
+  .left-btn, .right-btn{ display:none; }
+}
+
+
+/* Testimonials — 3-cards-at-a-time, clean edge masks, no overlap */
+
+/* Track: single row, fixed column width so exactly 3 are visible */
+#testimonial-cards{
+  display: grid !important;
+  grid-auto-flow: column;                 /* one horizontal row */
+  grid-auto-columns: calc((100% - 2 * 1.5rem) / 3); /* 3 columns with gaps */
+  gap: 1.5rem;
+  height: 420px;                          /* keep cards the same height */
+  min-height: 420px;
+  overflow: hidden;                       /* hide off-canvas cards */
+  align-items: stretch;
+}
+
+/* Cards fill their column without overlapping neighbors */
+.testimony-card{
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* Optional soft edge fade so the 4th card peeking looks tidy */
+.testimonials-wrapper{
+  position: relative;
+}
+.testimonials-wrapper::before,
+.testimonials-wrapper::after{
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 6;
+}
+.testimonials-wrapper::before{
+  left: 0;
+  background: linear-gradient(to right, rgba(242,239,247,1), rgba(242,239,247,0));
+}
+.testimonials-wrapper::after{
+  right: 0;
+  background: linear-gradient(to left, rgba(242,239,247,1), rgba(242,239,247,0));
+}
+
+/* Arrows pinned and centered; never affect layout */
+.left-btn, .right-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  width: 42px; height: 42px;
+  outline: none; flex: none;
+}
+.left-btn{ left: 8px; }
+.right-btn{ right: 8px; }
+.left-btn:focus, .left-btn:active,
+.right-btn:focus, .right-btn:active{
+  transform: translateY(-50%);
+  outline: none; box-shadow: none;
+}
+
+/* Responsive: still show 3/2/1 cleanly without overlap */
+@media (max-width: 1024px){
+  #testimonial-cards{
+    grid-auto-columns: calc((100% - 1.5rem) / 2);  /* 2 visible */
+    height: 440px; min-height: 440px;
+  }
+}
+@media (max-width: 768px){
+  #testimonial-cards{
+    grid-auto-columns: 100%;                       /* 1 visible */
+    height: 420px; min-height: 420px;
+  }
+  .left-btn, .right-btn{ display:none; }
+}
+
+/* Viewport shows exactly 3 cards; hides overflow */
+.testimonial-viewport{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 420px;
+  min-height: 420px;
+}
+
+/* Track slides horizontally with smooth transition (like alumni) */
+.testimonial-track{
+  display: grid;
+  grid-auto-flow: column;                             /* one row */
+  grid-auto-columns: calc((100% - 2 * 1.5rem) / 3);   /* 3 visible with 2 gaps */
+  gap: 1.5rem;
+  will-change: transform;
+  transform: translateX(0);
+  transition: transform 380ms ease;                   /* slide animation */
+}
+
+/* Cards fill their column; no overlap, no margins that push layout */
+.testimony-card{
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Wrapper and edge fades (like alumni) */
+.testimonials-wrapper{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.testimonials-wrapper::before,
+.testimonials-wrapper::after{
+  content:"";
+  position:absolute; top:0; bottom:0; width:60px; z-index:6; pointer-events:none;
+}
+.testimonials-wrapper::before{
+  left:-1px; background: linear-gradient(to right, rgba(242,239,247,1), rgba(242,239,247,0));
+}
+.testimonials-wrapper::after{
+  right:-1px; background: linear-gradient(to left, rgba(242,239,247,1), rgba(242,239,247,0));
+}
+
+/* Arrows pinned OUTSIDE cards, vertically centered */
+.left-btn, .right-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #28206c;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 8px 20px rgba(40,32,108,0.20);
+}
+.left-btn{ left: -14px; }      /* pull outside the first card */
+.right-btn{ right: -14px; }    /* pull outside the last card */
+.left-btn:hover, .right-btn:hover{ background:#3a3191; }
+.left-btn:focus, .left-btn:active,
+.right-btn:focus, .right-btn:active{
+  transform: translateY(-50%); /* keep exact position across states */
+  outline: none; box-shadow: 0 8px 20px rgba(40,32,108,0.20);
+}
+
+/* Responsive: 2 then 1 visible, same sliding logic */
+@media (max-width: 1024px){
+  .testimonial-viewport{ height: 440px; min-height: 440px; }
+  .testimonial-track{
+    grid-auto-columns: calc((100% - 1.5rem) / 2);     /* 2 visible */
+  }
+  .left-btn{ left: -10px; } .right-btn{ right: -10px; }
+}
+@media (max-width: 768px){
+  .testimonial-viewport{ height: 420px; min-height: 420px; }
+  .testimonial-track{ grid-auto-columns: 100%; }      /* 1 visible */
+  .left-btn, .right-btn{ display:none; }              /* optional on mobile */
+}
+
+.twitter-cta{
+  background: #000;              /* X uses black brand */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+.twitter-cta:hover{
+  background: #111;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+.threads-cta{
+  background: #000;              /* Threads is black/white mark */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+.threads-cta:hover{
+  background: #1a1a1a;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.9);
+}
+
+/* Make the WhatsApp icon big and bold in the header CTA */
+.whatsapp-btn i{
+  font-size: 1.4em;          /* increase size (tweak 1.2–1.6em as needed) */
+  font-weight: 900;          /* bold icon weight for FA6 where applicable */
+  line-height: 1;            /* tight vertical alignment */
+}
+
+/* Boost the whole button’s prominence */
+.whatsapp-btn{
+  padding: 0.9rem 1.4rem;    /* slightly larger tap target */
+  font-weight: 800;          /* bold label */
+}
+
+/* Optional: make icon slightly larger than label and keep spacing tight */
+.whatsapp-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}

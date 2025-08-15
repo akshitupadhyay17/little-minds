@@ -392,4 +392,58 @@ document.addEventListener('DOMContentLoaded', function() {
     animateWithPause();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('testimonial-track');
+  const left = document.querySelector('.left-btn');
+  const right = document.querySelector('.right-btn');
+  if (!track) return;
 
+  let index = 0;  // leftmost visible card index
+
+  const getStep = () => {
+    const firstCard = track.querySelector('.testimony-card');
+    if (!firstCard) return 0;
+    const rect = firstCard.getBoundingClientRect();
+    const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0);
+    return rect.width + gap;
+  };
+
+  const getVisibleCount = () => {
+    const w = window.innerWidth;
+    if (w <= 768) return 1;
+    if (w <= 1024) return 2;
+    return 3;
+  };
+
+  const getMaxIndex = () => {
+    const total = track.querySelectorAll('.testimony-card').length;
+    return Math.max(0, total - getVisibleCount());
+  };
+
+  const clampIndex = () => {
+    index = Math.min(Math.max(0, index), getMaxIndex());
+  };
+
+  const update = () => {
+    const offset = -(index * getStep());
+    track.style.transform = `translateX(${offset}px)`;
+  };
+
+  // Controls: left button slides RIGHT (to previous), right button slides LEFT (to next)
+  if (left) {
+    left.setAttribute('tabindex','-1');              // avoid focus jiggle
+    left.addEventListener('mousedown', e => e.preventDefault());
+    left.addEventListener('click', () => { index -= 1; clampIndex(); update(); });
+  }
+  if (right) {
+    right.setAttribute('tabindex','-1');
+    right.addEventListener('mousedown', e => e.preventDefault());
+    right.addEventListener('click', () => { index += 1; clampIndex(); update(); });
+  }
+
+  // Recompute on resize (keeps 3/2/1 logic and step exact)
+  window.addEventListener('resize', () => { clampIndex(); update(); });
+
+  // Init
+  clampIndex(); update();
+});
