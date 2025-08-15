@@ -2636,3 +2636,102 @@ body {
   z-index: 1;
 }
 
+/* === SITE-WIDE CONSISTENT BACKGROUND === */
+/* Pick ONE base background and reuse everywhere */
+:root{
+  --lm-base: #f2eff7;        /* global page bg */
+  --lm-surface: #f2eff7;     /* same as base for seamless sections */
+  --lm-card: rgba(255,255,255,0.92);
+  --lm-deep:#28206c;
+  --lm-accent:#ffd600;
+  --lm-border: rgba(40,32,108,0.14);
+  --lm-shadow: rgba(40,32,108,0.12);
+}
+
+html, body{
+  background: var(--lm-base);
+}
+
+/* Remove per-section gradients; use the same base color */
+.timescape,
+.team,
+.force-behind,
+.patrons-section,
+.programs,
+.testimonies,
+.alumni,
+.gallery-preview,
+.social-section,
+.contact{
+  background: var(--lm-surface) !important;
+}
+
+/* Cards/panels across site (keep slight elevation) */
+.founder-card,.team-member,.program-container,.testimony-card,
+.alumni-card,.patron-card,.contact-right,.timescape-story,
+.cho-long-card,.program-card-new{
+  background: var(--lm-card);
+  border: 1px solid var(--lm-border);
+  box-shadow: 0 8px 24px var(--lm-shadow);
+}
+
+/* Hover emphasis (optional) */
+.founder-card:hover,.team-member:hover,.program-container:hover,
+.alumni-card:hover,.patron-card:hover,.timescape-story:hover,
+.program-card-new:hover{
+  border-color: var(--lm-deep);
+  box-shadow: 0 14px 36px rgba(40,32,108,0.2);
+}
+
+/* ==== FORCE-BEHIND SECTION MATCHING ==== */
+/* Make the section and its inner containers identical to the section bg */
+.force-behind{
+  background: var(--lm-surface) !important;
+}
+
+/* Force the containers within to use the SAME background as the section */
+.force-member,
+.cho-long-card{
+  background: var(--lm-surface) !important;   /* identical to section */
+  box-shadow: none;                           /* remove elevation to blend */
+}
+
+/* If you want absolutely no borders/shadows inside force-behind, uncomment:
+.force-member, .cho-long-card{ border: none; box-shadow: none; }
+*/
+
+/* Optional: images and text colors remain unchanged; keep theme accents */
+.contact-icon{ background: linear-gradient(135deg,var(--lm-deep),var(--lm-accent)); color:#fff; }
+.contact-btn,.contact-btn2,.submit-btn{ background: var(--lm-accent); color: var(--lm-deep); }
+.contact-btn:hover,.contact-btn2:hover,.submit-btn:hover{ background:#eec900; color:#1a1540; }
+
+
+/* 3) Educational Programs: add clear outlines on program cards */
+.program-card-new{
+  border: 3px solid #28206c;                 /* primary outline */
+  box-shadow: 0 12px 28px rgba(40,32,108,0.18);
+}
+.program-card-new:hover{
+  border-color: #ffd600;                     /* accent on hover */
+  box-shadow: 0 16px 40px rgba(40,32,108,0.25);
+}
+
+/* If the cards sit inside a container that also needs a visible outline: */
+.program-container{
+  border: 2px solid rgba(40,32,108,0.20);
+  box-shadow: 0 10px 28px rgba(40,32,108,0.15);
+}
+
+.cho-long-card{
+  background: linear-gradient(135deg, rgba(40,32,108,0.10) 0%, rgba(40,32,108,0.06) 100%);
+  border: 1px solid rgba(40,32,108,0.12);
+  box-shadow: 0 12px 28px rgba(40,32,108,0.18);
+  border-radius: 20px;
+}
+
+.cho-long-card{
+  background: #f0efff;
+  border: 1px solid rgba(40,32,108,0.12);
+  box-shadow: 0 12px 28px rgba(40,32,108,0.18);
+  border-radius: 20px;
+}
