@@ -2604,3 +2604,35 @@ body {
     }
 }
 
+
+/* Extend the ON-image overlay gradient to the full hero height */
+.hero {
+  position: relative; /* ensure pseudo element anchors correctly */
+}
+
+/* This sits above the image but below content, covering entire hero */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;                 /* top:0 right:0 bottom:0 left:0 */
+  z-index: 0;               /* stays behind hero content */
+  pointer-events: none;
+
+  /* same gradient as your under-image layer, stretched to full height */
+  background: linear-gradient(
+    to top,
+    #28206c 0%,
+    rgba(40,32,108,0.92) 20%,
+    rgba(40,32,108,0.75) 40%,
+    rgba(40,32,108,0.45) 65%,
+    rgba(40,32,108,0.15) 85%,
+    rgba(40,32,108,0.00) 100%
+  );
+}
+
+/* Ensure hero content is above the overlay */
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
