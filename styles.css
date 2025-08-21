@@ -3514,3 +3514,273 @@ body.dark-mode .dark-mode-toggle {
 body.dark-mode .dark-mode-toggle:hover {
   background: rgba(255, 215, 0, 0.15);
 }
+
+/* ===== FORCE HERO SECTION TO BE IDENTICAL IN BOTH MODES ===== */
+
+/* Force hero background to always be the same */
+.hero,
+body.dark-mode .hero {
+  /* Force exact same background image and overlays */
+  background-image:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.8) 100%),
+    linear-gradient(to bottom, transparent 0%, transparent 100vh, rgba(0, 0, 0, 0.8) 100vh, rgba(0, 0, 0, 1) 100%),
+    url('img/hero-elements/IMG_0504.JPG') !important;
+  
+  background-size: 100% 100vh, 100% 100%, 120% 120vh !important;
+  background-position: center top, center top, center top !important;
+  background-repeat: no-repeat, no-repeat, no-repeat !important;
+  background-attachment: scroll, scroll, scroll !important;
+  background-color: transparent !important;
+}
+
+/* Force hero overlay gradient to be exactly the same */
+.hero::before,
+body.dark-mode .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    #28206c 0%,
+    rgba(40, 32, 108, 0.92) 20%,
+    rgba(40, 32, 108, 0.75) 40%,
+    rgba(40, 32, 108, 0.45) 65%,
+    rgba(40, 32, 108, 0.15) 85%,
+    rgba(40, 32, 108, 0.00) 100%
+  ) !important;
+}
+
+/* Force all hero text colors to be identical */
+.hero h1,
+body.dark-mode .hero h1 {
+  color: #ffd600 !important;
+  font-family: "Fraunces", serif !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.hero-content,
+body.dark-mode .hero-content,
+.hero-content *,
+body.dark-mode .hero-content * {
+  color: #ffffff !important;
+  background: transparent !important;
+}
+
+/* Force stat cards to look exactly the same */
+.stat-item,
+body.dark-mode .stat-item {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #ffffff !important;
+}
+
+.stat-item:hover,
+body.dark-mode .stat-item:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transform: translateY(-5px) !important;
+}
+
+.stat-item i,
+body.dark-mode .stat-item i {
+  color: #ffd700 !important;
+}
+
+.stat-number,
+body.dark-mode .stat-number {
+  color: #ffffff !important;
+}
+
+.stat-label,
+body.dark-mode .stat-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Force hero stats container styling */
+.hero-stats,
+body.dark-mode .hero-stats {
+  background: transparent !important;
+}
+
+/* Force tagline text styling */
+.hero-tagline,
+body.dark-mode .hero-tagline,
+.hero-tagline *,
+body.dark-mode .hero-tagline * {
+  color: #ffd600 !important;
+  background: transparent !important;
+}
+
+/* Force LM Ethos section to be identical */
+.lm-ethos,
+body.dark-mode .lm-ethos {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(15px) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.lm-ethos h3,
+body.dark-mode .lm-ethos h3 {
+  color: #ffd700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lm-ethos p,
+body.dark-mode .lm-ethos p {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+.lm-ethos em,
+body.dark-mode .lm-ethos em {
+  color: #ffd700 !important;
+}
+
+/* Force hero positioning and layout to be identical */
+.hero,
+body.dark-mode .hero {
+  position: relative !important;
+  min-height: 165vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: center !important;
+  overflow: visible !important;
+  padding-top: 120px !important;
+  padding-bottom: 2rem !important;
+}
+
+/* Ensure hero elements maintain proper z-index */
+.hero > *,
+body.dark-mode .hero > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Reset any dark mode CSS variables for hero section */
+body.dark-mode .hero,
+body.dark-mode .hero-content,
+body.dark-mode .hero-stats,
+body.dark-mode .stat-item,
+body.dark-mode .lm-ethos {
+  --bg-base: transparent;
+  --bg-surface: transparent;
+  --bg-card: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-white: #ffffff;
+  --text-faded: rgba(255, 255, 255, 0.9);
+  --accent-gold: #ffd600;
+}
+
+/* Prevent any dark mode inheritance in hero */
+body.dark-mode .hero,
+body.dark-mode .hero *:not(.nav):not(.nav *) {
+  background-color: transparent !important;
+}
+
+/* ===== NAVIGATION CTA - FORCE WHATSAPP BUTTON TO BE IDENTICAL ===== */
+
+/* Force WhatsApp button to always look the same in nav */
+.nav-ctas .whatsapp-btn,
+body.dark-mode .nav-ctas .whatsapp-btn,
+.nav .whatsapp-btn,
+body.dark-mode .nav .whatsapp-btn {
+  background: #ffd600 !important;
+  color: #28206c !important;
+}
+
+.nav-ctas .whatsapp-btn:hover,
+body.dark-mode .nav-ctas .whatsapp-btn:hover,
+.nav .whatsapp-btn:hover,
+body.dark-mode .nav .whatsapp-btn:hover {
+  background: #eec900 !important;
+  color: #1a1540 !important;
+}
+
+/* Force WhatsApp icon and text color */
+.nav-ctas .whatsapp-btn i,
+body.dark-mode .nav-ctas .whatsapp-btn i,
+.nav .whatsapp-btn i,
+body.dark-mode .nav .whatsapp-btn i {
+  color: #28206c !important;
+}
+
+.nav-ctas .whatsapp-btn span,
+body.dark-mode .nav-ctas .whatsapp-btn span,
+.nav .whatsapp-btn span,
+body.dark-mode .nav .whatsapp-btn span {
+  color: #28206c !important;
+}
+
+/* ===== FOOTER BUTTONS - MAKE YELLOW IN DARK MODE ===== */
+
+/* Force footer opportunity links to be yellow in dark mode */
+body.dark-mode .opportunity-link {
+  background: #ffd600 !important;
+  color: #28206c !important;
+  border-color: transparent !important;
+}
+
+body.dark-mode .opportunity-link:hover {
+  background: #eec900 !important;
+  color: #1a1540 !important;
+  border-color: rgba(255, 214, 0, 0.6) !important;
+}
+
+body.dark-mode .opportunity-link i,
+body.dark-mode .opportunity-link span {
+  color: #28206c !important;
+}
+
+/* Force footer social links to be yellow in dark mode */
+body.dark-mode .social-links a {
+  background: #ffd600 !important;
+  color: #28206c !important;
+}
+
+body.dark-mode .social-links a:hover {
+  background: #eec900 !important;
+  color: #1a1540 !important;
+}
+
+/* Force footer newsletter button to be yellow in dark mode */
+body.dark-mode .newsletter-form button {
+  background: #ffd600 !important;
+  color: #28206c !important;
+}
+
+body.dark-mode .newsletter-form button:hover {
+  background: #eec900 !important;
+  color: #1a1540 !important;
+}
+
+/* Force any other footer buttons to be yellow */
+body.dark-mode .footer .contact-btn,
+body.dark-mode .footer button,
+body.dark-mode .footer input[type="submit"] {
+  background: #ffd600 !important;
+  color: #28206c !important;
+}
+
+body.dark-mode .footer .contact-btn:hover,
+body.dark-mode .footer button:hover,
+body.dark-mode .footer input[type="submit"]:hover {
+  background: #eec900 !important;
+  color: #1a1540 !important;
+}
+
+/* ===== TOP ARROW BUTTON - DARK ARROW ICON IN DARK MODE ===== */
+
+/* Keep everything the same, just change arrow color in dark mode */
+body.dark-mode .top-arrow-btn {
+  color: #28206c !important; /* Dark arrow icon */
+}
+
+body.dark-mode .top-arrow-btn:hover {
+  color: #1a1540 !important; /* Slightly darker on hover */
+}
