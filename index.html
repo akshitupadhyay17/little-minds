@@ -10,56 +10,89 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Short+Stack&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">
-                <a href="#hero"><img src="img/logos/little-minds-logo-wo-bg.png" alt="Little Minds Foundation School" class="logo-img"></a>
-            </div>
-            
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#timescape">Our Timescape</a></li>
-                <li><a href="#force-behind">The Force Behind</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#alumni">Our Alumni</a></li>
-                <li><a href="#social">Socail Media</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-            
-            <a href="https://wa.me/919876543210?text=Hello%20Little%20Minds%2C%20I%27d%20like%20to%20know%20more."
-   class="contact-btn whatsapp-btn"
-   target="_blank" rel="noopener">
-  <i class="fab fa-whatsapp"></i>
-  Get In Touch
-</a>
-            
-            <button class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-        
-        <!-- Mobile Navigation -->
-        <div class="mobile-nav">
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#timescape">Our Timescape</a></li>
-                <li><a href="#force-behind">The Force Behind</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#alumni">Our Alumni</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-            <div class="mobile-cta">
-                <a href="#contact" class="contact-btn">Get In Touch</a>
-            </div>
-        </div>
-    </header>
+    <!-- Updated Navbar HTML (keeps original spacing, adds toggle) -->
+<header class="header">
+  <nav class="nav">
+    <a class="logo" href="#hero">
+      <img src="img/logos/little-minds-logo-wo-bg.png" alt="Little Minds" class="logo-img" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#timescape">Our Timescape</a></li>
+      <li><a href="#force-behind">The Force Behind</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#alumni">Alumni</a></li>
+      <li><a href="#social">Social Media</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+
+    <div class="nav-ctas">
+      <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn contact-btn">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        Get In Touch
+      </a>
+      <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon" aria-hidden="true"></i>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#timescape">Our Timescape</a></li>
+      <li><a href="#force-behind">The Force Behind</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#alumni">Alumni</a></li>
+      <li><a href="#social">Social Media</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+    <button id="darkModeToggleMobile" class="dark-mode-toggle mobile" aria-label="Toggle theme">
+      <i class="fas fa-moon" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<script>
+(function(){
+  // Theme toggle (dark default)
+  const body = document.body;
+  const btns = [document.getElementById('darkModeToggle'), document.getElementById('darkModeToggleMobile')];
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') body.classList.add('light-mode'); else body.classList.remove('light-mode');
+
+  function syncIcons() {
+    const light = body.classList.contains('light-mode');
+    btns.forEach(b => {
+      if(!b) return;
+      const i = b.querySelector('i');
+      if(!i) return;
+      i.classList.toggle('fa-sun', light);
+      i.classList.toggle('fa-moon', !light);
+    });
+  }
+  function toggleTheme(){ body.classList.toggle('light-mode'); localStorage.setItem('theme', body.classList.contains('light-mode')?'light':'dark'); syncIcons(); }
+  btns.forEach(b=> b && b.addEventListener('click', toggleTheme));
+  syncIcons();
+
+  // Basic mobile menu (if you need it)
+  const burger = document.getElementById('hamburger');
+  const mobile = document.getElementById('mobileNav');
+  burger && burger.addEventListener('click', ()=> mobile.classList.toggle('active'));
+})();
+</script>
+
 
    <!-- Hero Section -->
 <section id="hero" class="hero">
@@ -127,6 +160,10 @@
 </section>
 
 
+<a href="/" class="top-arrow-btn" id="topArrowBtn" aria-label="Go to Home">
+  &#8679;
+</a>
+
     <!-- ===== THE FORCE BEHIND SECTION ===== -->
 <section id="force-behind" class="force-behind">
     <div class="container">
@@ -185,16 +222,19 @@
     </div>
 
     <!-- CHO Dogs - Long Card Layout -->
-        <div class="force-member cho-long-card fade-in">
-            <div class="cho-image">
-                <img src="img/force-behind/CHO.png" alt="Chief Happiness Officers">
-            </div>
-            <div class="cho-content">
-                <h3>The CHOs</h3>
-                <h4>Chief Happiness Officers</h4>
-            </div>
-        </div>
+<div class="force-member cho-long-card fade-in">
+    <div class="cho-image">
+        <img src="img/force-behind/chowhiskey.jpeg" alt="Chief Happiness Officers">
     </div>
+    <div class="cho-content">
+        <h3>Whiskey</h3>
+        <h4>Chief Happiness Officer</h4>
+        <p>
+            The trendsetter who became the reason for a new position in 2021, Whiskey is the furry friend you will find, were you to look into any nook and cranny at Little Minds. He is omnipresent as he makes himself available to anyone having a long day (no age barriers there!) along with pitching in to help with the office work and keeping his best friends safe. He is a busy boy who can be found dashing around the perimeter, making sure no monkeys get away with touching his favourite swings in the playground, all while doing what he is best at—spreading smiles all around!
+        </p>
+    </div>
+</div>
+
 </section>
 
 <!-- ===== PATRONS SECTION ===== -->
@@ -206,29 +246,39 @@
         </div>
         
         <div class="patrons-grid">
-            <!-- Prof. N.K. Goyal -->
             <div class="patron-card fade-in">
-                <div class="patron-content">
-                    <h3>Prof. N.K. Goyal</h3>
-                    <h4>Founding Patron</h4>
-                    <p>Prof. N.K. Goyal, is the founding patron of Little Minds School and Sai Santushti Educational Trust. He is a veteran education leader setting up three K-12 formal schools in Haryana and Himachal Pradesh since 1986. He is also a senior telecom professional with more than 45 years of experience across sectors.</p>
-                    <p>Prof. Goyal is a Post Graduate in Science and is the founding President of CMAI Association of India (CMAI), which is India largest ICT association with 48,500 members and 54 MOU partners worldwide. Prof. Goyal is the only person in the world having joined the Inaugural committee of world's largest Consumer Electronic show (CES) at Las Vegas (USA) for more than five consecutive years. He has unparalleled global knowledge and exposure in the fields of education, telecom, ICT and cyber security.</p>
-                </div>
+    <div class="patron-content">
+        <div class="patron-header">
+            <div class="patron-heading">
+                <h3>Prof. N.K. Goyal</h3>
+                <h4>Founding Patron</h4>
             </div>
-
-            <!-- Mrs. Anjali Verma -->
-            <div class="patron-card fade-in">
-                <div class="patron-content">
-                    <h3>Mrs. Anjali Verma</h3>
-                    <h4>Patron</h4>
-                    <p>Mrs. Anjali Verma is a renowned social activist, and a seasoned education patron being the first Director of St. Thomas Schools Trust, Himachal Pradesh. She is also the Director on Board CMAI Association of India & a Member of CMAI Focus Group on education transformation under NEP.</p>
-                    <p>Mrs. Verma is an alumnus of the legendary St. Bedes College, Shimla and is also the founding member of the core group of St. Bedes Alumni Association. She has been instrumental in bringing the modern-day concept inclusion of cyber security, AI and smart technology in college curricula, which has generated widespread appreciation.</p>
-                </div>
-            </div>
+            <img class="patron-image" src="img/patrons/nkgoyal.jpeg" alt="Prof. N.K. Goyal">
+        </div>
+        <div class="patron-text">
+            <p>Prof. N.K. Goyal, is the founding patron of Little Minds School and Sai Santushti Educational Trust. He is a veteran education leader setting up three K-12 formal schools in Haryana and Himachal Pradesh since 1986. He is also a senior telecom professional with more than 45 years of experience across sectors.</p>
+            <p>Prof. Goyal is a Post Graduate in Science and is the founding President of CMAI Association of India (CMAI), which is India largest ICT association with 48,500 members and 54 MOU partners worldwide. Prof. Goyal is the only person in the world having joined the Inaugural committee of world's largest Consumer Electronic show (CES) at Las Vegas (USA) for more than five consecutive years. He has unparalleled global knowledge and exposure in the fields of education, telecom, ICT and cyber security.</p>
         </div>
     </div>
-</section>
+</div>
 
+<div class="patron-card fade-in">
+    <div class="patron-content">
+        <div class="patron-header">
+            <div class="patron-heading">
+                <h3>Mrs. Anjali Verma</h3>
+                <h4>Patron</h4>
+            </div>
+            <img class="patron-image" src="img/patrons/anjali.jpeg" alt="Mrs. Anjali Verma">
+        </div>
+        <div class="patron-text">
+            <p>Mrs. Anjali Verma is a renowned social activist, and a seasoned education patron being the first Director of St. Thomas Schools Trust, Himachal Pradesh. She is also the Director on Board CMAI Association of India & a Member of CMAI Focus Group on education transformation under NEP.</p>
+            <p>Mrs. Verma is an alumnus of the legendary St. Bedes College, Shimla and is also the founding member of the core group of St. Bedes Alumni Association. She has been instrumental in bringing the modern-day concept inclusion of cyber security, AI and smart technology in college curricula, which has generated widespread appreciation.</p>
+        </div>
+    </div>
+</div>
+</div>
+</section>
 
     <!-- ===== PROGRAMS SECTION ===== -->
 <section class="programs" id="programs">
@@ -320,11 +370,12 @@
                     <h3>Value Added Programs</h3>
                 </div>
                 <div class="cards-wrapper-three">
-                    <div class="program-card-new" onclick="openModal('day-care')">
+                    
+                    <div class="program-card-new" onclick="openModal('summer-club')">
                         <div class="program-image-container">
-                            <img src="img/programs/daycare.JPG" alt="Day-Care">
+                            <img src="img/programs/summerclub.PNG" alt="Summer Club">
                             <div class="program-overlay">
-                                <h4>Day-Care</h4>
+                                <h4>Summer Club</h4>
                             </div>
                         </div>
                     </div>
@@ -336,11 +387,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="program-card-new" onclick="openModal('summer-club')">
+                    <div class="program-card-new" onclick="openModal('day-care')">
                         <div class="program-image-container">
-                            <img src="img/programs/summerclub.PNG" alt="Summer Club">
+                            <img src="img/programs/daycare.JPG" alt="Day-Care">
                             <div class="program-overlay">
-                                <h4>Summer Club</h4>
+                                <h4>Day-Care</h4>
                             </div>
                         </div>
                     </div>
@@ -423,6 +474,35 @@
                     </div>
                 </div>
 
+                                <!-- Gresha Gupta -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/newkid.jpeg" alt="Gresha Gupta">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Gresha Gupta</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Brightlands</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Viraj Gupta -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/viraj.jpeg" alt="Viraj Gupta">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Viraj Gupta</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Brightlands</span>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- Duplicate Cards for Seamless Loop -->
                 <div class="alumni-card">
                     <div class="alumni-image">
@@ -475,101 +555,144 @@
                         </div>
                     </div>
                 </div>
+                                <!-- Gresha Gupta -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/newkid.jpeg" alt="Gresha Gupta">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Gresha Gupta</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Brightlands</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Viraj Gupta -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/viraj.jpeg" alt="Viraj Gupta">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Viraj Gupta</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Brightlands</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== TESTIMONIALS SECTION ===== -->
-<section class="testimonials-section" id="testimonials">
-    <div class="container">
-        <div class="section-title">
-            <h2>What Parents Say</h2>
-            <p>Hear from the families who trust us with their children's early education journey</p>
-        </div>
-        
-        <div class="testimonials-container">
-            <div class="testimonials-wrapper" id="testimonialsWrapper">
-                <button class="nav-btn left-btn" id="prevTestimonial">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                
-                <div id="testimonial-cards" class="testimonial-cards-container">
-                    <div class="testimony-card active">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="testimony-content">
-                            <p>"LM Educational Center has been absolutely wonderful for our daughter. The teachers are caring and professional, and the learning environment is both nurturing and stimulating. We've seen tremendous growth in her confidence and social skills."</p>
-                        </div>
-                        <div class="testimony-author">
-                            <img src="img/testimonials/parent1.jpg" alt="Sarah Johnson">
-                            <div class="author-info">
-                                <h4>Sarah Johnson</h4>
-                                <span>Parent of Emma, Age 4</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimony-card">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="testimony-content">
-                            <p>"The individual attention each child receives is remarkable. My son went from being shy and hesitant to confident and eager to learn. The curriculum is well-balanced and the facilities are top-notch."</p>
-                        </div>
-                        <div class="testimony-author">
-                            <img src="img/testimonials/parent2.jpg" alt="Michael Chen">
-                            <div class="author-info">
-                                <h4>Michael Chen</h4>
-                                <span>Parent of Alex, Age 5</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimony-card">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="testimony-content">
-                            <p>"What sets LM Educational Center apart is their genuine care for each child's development. The teachers know every child by name and tailor their approach accordingly. It truly feels like an extended family."</p>
-                        </div>
-                        <div class="testimony-author">
-                            <img src="img/testimonials/parent3.jpg" alt="Lisa Rodriguez">
-                            <div class="author-info">
-                                <h4>Lisa Rodriguez</h4>
-                                <span>Parent of Sofia, Age 3</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="nav-btn right-btn" id="nextTestimonial">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="testimonial-dots" id="testimonialDots">
-                <span class="dot active" data-slide="0"></span>
-                <span class="dot" data-slide="1"></span>
-                <span class="dot" data-slide="2"></span>
-            </div>
-        </div>
+<!-- Testimonials Section -->
+<section class="testimonies fade-in" id="testimonials">
+  <div class="container">
+    <div class="section-title">
+      <h2>What Parents Say</h2>
+      <p>Hear from our Little Minds family about their wonderful journey with us</p>
     </div>
-    
+
+    <div class="testimonials-wrapper">
+      <!-- Previous Button -->
+      <button class="testimonial-nav-btn testimonial-prev" id="testimonial-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <!-- Testimonials Container -->
+      <div class="testimonials-container">
+        <div id="testimonial-cards">
+          <!-- Testimonial 1 -->
+          <div class="testimony-card">
+            <div class="stars">★★★★★</div>
+            <div class="testimony-content">
+              <p>Searching for a pre school which gives your child homely feeling and parents like care is a next to impossible task. But we were fortunate to get our child admitted to Little Minds. When we started the search for a school we had so many points and criteria, distance was one of the important factors as we are putting up in SD Road, we were willing to consider nearby schools only. But going through the reviews we decided to visit Little Minds once, and after meeting Saurabh Sir and Meenu Ma'am we didn't had any second thought, I feel the decision turned out to be a good one. I highly recommend this school to every parent who are looking for a homely environment and care for their beloved one. Our kid turned into a good student all because of his teachers Laxmi Ma'am, Rohini Ma'am and last but not the least Meenu Ma'am, I would like to thank the whole staff of Little Minds for this wonderful experience.</p>
+            </div>
+            <div class="testimony-author">
+              <div class="author-info">
+                <h4>Prateek Chaurasia</h4>
+                <span>Parent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 2 -->
+          <div class="testimony-card">
+            <div class="stars">★★★★★</div>
+            <div class="testimony-content">
+              <p>We were truly blessed to have our kid spend 4 years of his journey with Little minds. Today as he goes to a bigger school we take lots of good memories and learnings from Little minds where Meenu Mam, Saurabh sir and team are running a marvellous center for overall development of the kids. Thank you!</p>
+            </div>
+            <div class="testimony-author">
+              <div class="author-info">
+                <h4>Capt Mohit Chawla</h4>
+                <span>Parent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 3 -->
+          <div class="testimony-card">
+            <div class="stars">★★★★★</div>
+            <div class="testimony-content">
+              <p>My Boy Veer started his Little Minds School LKG journey earlier this year in August 2024 and to my surprise he has exceeded my and my Wife's expectations in terms of his overall personality development and growth in all areas. His confidence whether public speaking on the stage, in his class, at home or with his friends in the evening playground has excelled and for this I would genuinely give credit to the School, to his Class Teacher, Principal, School Head and everyone involved in Little Mind's management from top to bottom. Last and most importantly Veer loves his school that he is after me to drop him to school on Weekends and School holidays too. Thank you Little Minds for all the love and care to Veer. Would highly recommend this School for the Little ones. Thank you</p>
+            </div>
+            <div class="testimony-author">
+              <div class="author-info">
+                <h4>Himanshu Chawla</h4>
+                <span>Parent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 4 -->
+          <div class="testimony-card">
+            <div class="stars">★★★★★</div>
+            <div class="testimony-content">
+              <p>Being the oldest teacher, I deeply appreciate Little Minds and the exemplary leadership of Mr. Saurabh Sir and Mrs. Meenu Ma'am. Over the years, I've witnessed a steadfast commitment to academic excellence and a nurturing environment that prioritizes both students and staff. Their visionary leadership has been a guiding force, fostering a positive culture and ensuring the school's continued success. It's been a decade working with them and I value the sense of tradition and the lasting impact we collectively make on the lives of our students. It's a place where education goes beyond the textbooks, and I'm grateful to be part of such an enriching educational journey. It's truly an honor to be part of a Little Minds that upholds such high standards of education and community spirit. I wish Little Minds continued success.</p>
+            </div>
+            <div class="testimony-author">
+              <div class="author-info">
+                <h4>Vaishali Thapa</h4>
+                <span>Teacher</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial 5 -->
+          <div class="testimony-card">
+            <div class="stars">★★★★★</div>
+            <div class="testimony-content">
+              <p>Very aptly delivering and living upto the promised tagline that the school philosophically believes in "You Trust Us, We Assure You". I am very pleased and content with our association and interaction with the school. The management, teachers and supporting staff are extremely caring and attentive to the children's needs and place safety on the forefront. My child thoroughly enjoys the plethora of engaging opportunities offered and interactive activities provided, with utmost focus on appreciation offered to the child. The parents are regularly updated and posted with even the minutest participation of the child on a daily basis that enables us to stay connected and well bonded with the school authorities, ensuring complete transparency which is a very appreciable and praiseworthy aspect. The persistent and diligent hardwork and unparalleled creativity displayed by the teachers is evident in every special event being organised which is highly commendable. Wonderful, memorable, enthralling, ever so enjoyable and enriching has been our journey of our child's pre-schooling and learning. Kudos to the entire Little Minds' Team and proud to be an LMite and LMite parents.</p>
+            </div>
+            <div class="testimony-author">
+              <div class="author-info">
+                <h4>Meghna Bakshi</h4>
+                <span>Parent</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <button class="testimonial-nav-btn testimonial-next" id="testimonial-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Google Reviews CTA -->
+    <div class="testimonials-cta">
+      <a href="https://www.google.com/search?q=little+minds+school+dehradun+reviews" target="_blank" class="google-reviews-btn">
+        <i class="fab fa-google"></i>
+        <span>Read More Reviews on Google</span>
+      </a>
+    </div>
+  </div>
 </section>
+
 
 
 <!-- Social Section (replacing Gallery Preview) -->
@@ -615,103 +738,138 @@
             </div>
             
             <div class="contact-layout">
-                <div class="contact-left">
-                    <h3>Get in Touch</h3>
-                    <p>Contact us today to learn more about our programs and admission process. We're here to answer all your questions and help you make the best decision for your child's future.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-detail-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-detail-content">
-                                <h4>Address</h4>
-                                <p>Little Minds® Foundation School<br>Dehradun, Uttarakhand, India</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-detail-content">
-                                <h4>Phone</h4>
-                                <p>+91 135-XXX-XXXX</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-detail-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-detail-content">
-                                <h4>Email</h4>
-                                <p>admissions@littleminds.edu.in</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-right">
-                    <div class="contact-form-container">
-                        <h3>Admission Inquiry Form</h3>
-                        <form class="contact-form" action="#" method="POST">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="parentName">Parent's Name *</label>
-                                    <input type="text" id="parentName" name="parentName" required placeholder="Enter parent's full name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="childName">Child's Name *</label>
-                                    <input type="text" id="childName" name="childName" required placeholder="Enter child's full name">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="phone">Phone Number *</label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" id="email" name="email" required placeholder="Enter email address">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="childAge">Child's Age</label>
-                                    <input type="number" id="childAge" name="childAge" placeholder="Enter child's age">
-                                </div>
-                                <div class="form-group">
-                                    <label for="grade">Interested Grade</label>
-                                    <select id="grade" name="grade">
-                                        <option value="">Select Grade</option>
-                                        <option value="pre-k">Pre-Nursery</option>
-                                        <option value="kindergarten">Nursery</option>
-                                        <option value="grade-1">Junior KG</option>
-                                        <option value="grade-2">Senior KG</option>
-                                        <option value="grade-3">Class 1</option>
-                                        <option value="grade-4">Class 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Message / Questions</label>
-                                <textarea id="message" name="message" rows="4" placeholder="Tell us about your child's needs and any questions you have..."></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                Submit Inquiry
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  <div class="contact-left">
+    <h3>Get in Touch</h3>
+    <p>Contact us today to learn more about our programs and admission process. We're here to answer all your questions and help you make the best decision for your child's future.</p>
+
+    <div class="contact-details">
+      <a class="contact-detail-item" href="https://maps.app.goo.gl/ULf31K6oCzzA6A8LA" target="_blank" rel="noopener">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="contact-detail-content">
+          <h4>Address</h4>
+          <p>
+            Plot no. 14, Bhagirathi Puram, Jakhan, Rajpur Road,<br>
+            Dehradun - 248 009 (Uttarakhand)
+          </p>
+        </div>
+      </a>
+
+      <a class="contact-detail-item" href="tel:+919557505078">
+        <div class="contact-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="contact-detail-content">
+          <h4>Phone</h4>
+          <p>+91 9557505078</p>
+        </div>
+      </a>
+
+      <a class="contact-detail-item" href="mailto:wecare@thelittleminds.com">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-detail-content">
+          <h4>Email</h4>
+          <p>wecare@thelittleminds.com</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <div class="contact-form-container">
+      <h3>Admission Inquiry Form</h3>
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="childName">Child's Name *</label>
+            <input type="text" id="childName" name="childName" required placeholder="Enter child's full name">
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth *</label>
+            <input type="text" id="dob" name="dob" required placeholder="DD/MM/YYYY" inputmode="numeric" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">Gender *</label>
+            <select id="gender" name="gender" required>
+              <option value="">Select</option>
+              <option>Girl</option>
+              <option>Boy</option>
+              <option>Prefer not to say</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="parentName">Parent's Name *</label>
+            <input type="text" id="parentName" name="parentName" required placeholder="Enter parent's full name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactNumber">Contact Number *</label>
+            <input type="tel" id="contactNumber" name="contactNumber" required placeholder="Enter primary phone no." inputmode="tel" pattern="^[0-9()+ -]{6,}$">
+          </div>
+          <div class="form-group">
+            <label for="whatsappNumber">WhatsApp Number (if different)</label>
+            <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="Enter WhatsApp number" inputmode="tel" pattern="^[0-9()+ -]{6,}$">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location of Residence *</label>
+          <input type="text" id="location" name="location" required placeholder="Area / Locality / City">
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Anything you wish to mention about your child?</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="Share any details you'd like us to know..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i>
+          Submit Inquiry
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
         </div>
     </section>
+<a href="/" class="top-arrow-btn" id="topArrowBtn" aria-label="Go to Home">
+  &#8679;
+</a>
+<script>
+  // Get references
+  const topArrowBtn = document.getElementById('topArrowBtn');
+  const timescape = document.querySelector('.timescape');
+  const footer = document.querySelector('.footer');
+
+  function controlArrowVisibility() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const timescapeRect = timescape.getBoundingClientRect();
+    const footerRect = footer.getBoundingClientRect();
+
+    const timescapeTop = timescapeRect.top + scrollY;
+    const footerTop = footerRect.top + scrollY;
+
+    if (scrollY + window.innerHeight > timescapeTop && scrollY + window.innerHeight < footerTop) {
+      topArrowBtn.style.display = "flex";
+    } else {
+      topArrowBtn.style.display = "none";
+    }
+  }
+
+  window.addEventListener('scroll', controlArrowVisibility);
+  window.addEventListener('resize', controlArrowVisibility);
+  document.addEventListener('DOMContentLoaded', controlArrowVisibility);
+</script>
 
     <!-- Footer -->
     <footer class="footer">
@@ -732,31 +890,41 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#timescape">Our Timescape</a></li>
-                        <li><a href="#team">The Force Behind</a></li>
+                        <li><a href="#force-behind">The Force Behind</a></li>
                         <li><a href="#programs">Programs</a></li>
-                        <li><a href="alumni.html">Our Alumni</a></li>
+                        <li><a href="#alumni">Our Alumni</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p>Dehradun, Uttarakhand, India</p>
-                    <p>Phone: +91 135-XXX-XXXX</p>
-                    <p>Email: info@littleminds.edu.in</p>
-                </div>
+  <h3>Contact Info</h3>
+  <p>
+    <a href="https://maps.app.goo.gl/ULf31K6oCzzA6A8LA" target="_blank" rel="noopener" class="footer-contact-link">
+      Plot no. 14, Bhagirathi Puram, Jakhan, Rajpur Road, Dehradun - 248 009 (Uttarakhand)
+    </a>
+  </p>
+  <p>
+    <a href="tel:+919557505078" class="footer-contact-link">Phone: +91 9557505078</a>
+  </p>
+  <p>
+    <a href="mailto:wecare@thelittleminds.com" class="footer-contact-link">Email: wecare@thelittleminds.com</a>
+  </p>
+</div>
+
                 
                 <div class="footer-section">
     <h3>Opportunities</h3>
-    <div class="opportunity-links">
-        <a href="#franchise" class="opportunity-link franchise-link">
-            <i class="fas fa-handshake"></i>
-            <span>Franchise with Us</span>
-        </a>
-        <a href="#hiring" class="opportunity-link hiring-link">
-            <i class="fas fa-users"></i>
-            <span>Join Our Team</span>
-        </a>
-    </div>
+<div class="opportunity-links">
+    <a href="https://forms.gle/P4ZJ6qLV9sVdwXGK7" class="opportunity-link franchise-link" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-handshake"></i>
+        <span>Franchise with Us</span>
+    </a>
+    <a href="https://forms.gle/fsyrY92MekbXznzCA" class="opportunity-link hiring-link" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-users"></i>
+        <span>Join Our Team</span>
+    </a>
+</div>
+
 </div>
 
             </div>
@@ -767,169 +935,205 @@
         </div>
     </footer>
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const testimonialsData = [
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "Little Minds has transformed my daughter's learning journey. The teachers are exceptional and the curriculum is engaging.", 
-            name: "Priya Sharma", 
-            relation: "Mother of Class 3 Student" 
-        },
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "The holistic education approach at Little Minds is exactly what we were looking for. Our son loves going to school every day!", 
-            name: "Rajesh Kumar", 
-            relation: "Father of Class 5 Student" 
-        },
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "The individual attention and care each child receives is remarkable. My twins have flourished here.", 
-            name: "Meera Patel", 
-            relation: "Mother of Twins" 
-        },
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "The sports program has helped my son build confidence and discipline. The coaches are fantastic!", 
-            name: "Amit Singh", 
-            relation: "Father of Class 2 Student" 
-        },
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "We love the creative arts focus. Our daughter has discovered her passion for music here.", 
-            name: "Anjali Gupta", 
-            relation: "Mother of Class 4 Student" 
-        },
-        { 
-            stars: "⭐⭐⭐⭐⭐", 
-            text: "Amazing teachers who truly care about each child's development and growth.", 
-            name: "Rohit Mehta", 
-            relation: "Father of KG Student" 
+// Fixed Testimonials Navigation JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialCards = document.getElementById('testimonial-cards');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+    
+    if (!testimonialCards || !prevBtn || !nextBtn) return;
+    
+    const cards = testimonialCards.querySelectorAll('.testimony-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    
+    // Calculate cards per view and card width based on screen size
+    function getViewportInfo() {
+        const containerWidth = testimonialCards.parentElement.offsetWidth;
+        let cardsPerView, cardWidth;
+        
+        if (window.innerWidth <= 768) {
+            cardsPerView = 1;
+            cardWidth = containerWidth;
+        } else if (window.innerWidth <= 1024) {
+            cardsPerView = 2;
+            cardWidth = 340; // Fixed width for tablet
+        } else if (window.innerWidth <= 1200) {
+            cardsPerView = 3;
+            cardWidth = 320; // Fixed width for smaller desktop
+        } else {
+            cardsPerView = 3;
+            cardWidth = 360; // Fixed width for large desktop
         }
-    ];
-
-    let startIndex = 0;
-    let isAnimating = false;
-
-    const cardsContainer = document.getElementById("testimonial-cards");
-    const leftBtn = document.querySelector(".left-btn");
-    const rightBtn = document.querySelector(".right-btn");
-
-    // Safety checks
-    if (!cardsContainer || !leftBtn || !rightBtn) {
-        console.error("Required elements not found");
-        return;
+        
+        return { cardsPerView, cardWidth };
     }
-
-    function getIndex(i) {
-        return ((i % testimonialsData.length) + testimonialsData.length) % testimonialsData.length;
+    
+    function updateCarousel() {
+        const { cardsPerView, cardWidth } = getViewportInfo();
+        const gap = 32; // 2rem gap
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        
+        // Ensure currentIndex is within bounds
+        currentIndex = Math.min(currentIndex, maxIndex);
+        currentIndex = Math.max(currentIndex, 0);
+        
+        // Calculate transform based on fixed card width
+        const translateX = currentIndex * (cardWidth + gap);
+        
+        testimonialCards.style.transform = `translateX(-${translateX}px)`;
+        
+        // Update button states
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+        
+        console.log('Current Index:', currentIndex, 'Max Index:', maxIndex); // Debug log
     }
-
-    function createCard(data) {
-        const card = document.createElement("div");
-        card.className = "testimony-card";
-        card.innerHTML = `
-            <div class="stars">${data.stars}</div>
-            <div class="testimony-content">
-                <p>"${data.text}"</p>
-            </div>
-            <div class="author-info">
-                <h4>${data.name}</h4>
-                <span>${data.relation}</span>
-            </div>
-        `;
-        return card;
-    }
-
-    function slideLeft() {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const cards = Array.from(cardsContainer.children);
-        const newCardData = testimonialsData[getIndex(startIndex - 1)];
-        const newCard = createCard(newCardData);
-
-        // Position new card off-screen to the left
-        newCard.style.transform = 'translateX(-100%)';
-        newCard.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        cardsContainer.insertBefore(newCard, cards[0]);
-
-        // All cards slide RIGHT as a unified group
-        requestAnimationFrame(() => {
-            // New card slides in from left
-            newCard.style.transform = 'translateX(0%)';
-            
-            // All existing cards slide right by one position
-            cards[0].style.transform = 'translateX(100%)';
-            cards[1].style.transform = 'translateX(200%)';
-            cards[2].style.transform = 'translateX(300%)';
-
-            setTimeout(() => {
-                cards[2].remove(); // Remove rightmost card that slid out
-                // Reset transforms for clean state
-                newCard.style.transform = '';
-                newCard.style.transition = '';
-                cards[0].style.transform = '';
-                cards[1].style.transform = '';
-                isAnimating = false;
-            }, 500);
-        });
-
-        startIndex = getIndex(startIndex - 1);
-    }
-
-    function slideRight() {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const cards = Array.from(cardsContainer.children);
-        const newCardData = testimonialsData[getIndex(startIndex + 3)];
-        const newCard = createCard(newCardData);
-
-        // Position new card off-screen to the right
-        newCard.style.transform = 'translateX(100%)';
-        newCard.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        cardsContainer.appendChild(newCard);
-
-        // All cards slide LEFT as a unified group
-        requestAnimationFrame(() => {
-            // All existing cards slide left
-            cards[0].style.transform = 'translateX(-300%)';
-            cards[1].style.transform = 'translateX(-200%)';
-            cards[2].style.transform = 'translateX(-100%)';
-            
-            // New card slides in from right
-            newCard.style.transform = 'translateX(0%)';
-
-            setTimeout(() => {
-                cards[0].remove(); // Remove leftmost card that slid out
-                // Reset transforms for clean state
-                cards[1].style.transform = '';
-                cards[2].style.transform = '';
-                newCard.style.transform = '';
-                newCard.style.transition = '';
-                isAnimating = false;
-            }, 500);
-        });
-
-        startIndex = getIndex(startIndex + 1);
-    }
-
-    function renderTestimonials() {
-        cardsContainer.innerHTML = "";
-        for (let i = 0; i < 3; i++) {
-            const data = testimonialsData[getIndex(startIndex + i)];
-            const card = createCard(data);
-            cardsContainer.appendChild(card);
+    
+    function goToPrev() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
         }
     }
-
+    
+    function goToNext() {
+        const { cardsPerView } = getViewportInfo();
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
+    
     // Event listeners
-    leftBtn.addEventListener("click", slideLeft);
-    rightBtn.addEventListener("click", slideRight);
-
-    // Initial render
-    renderTestimonials();
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        goToPrev();
+    });
+    
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        goToNext();
+    });
+    
+    // Handle resize with debouncing
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            currentIndex = 0; // Reset to first slide on resize
+            updateCarousel();
+        }, 150);
+    });
+    
+    // Initialize
+    setTimeout(updateCarousel, 100); // Small delay to ensure DOM is ready
+    
+    // Optional: Auto-scroll every 7 seconds (remove if not needed)
+    setInterval(function() {
+        const { cardsPerView } = getViewportInfo();
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        
+        if (currentIndex >= maxIndex) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+        updateCarousel();
+    }, 7000);
 });
+// Testimonials Navigation JavaScript (Manual Only)
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialCards = document.getElementById('testimonial-cards');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
+    
+    if (!testimonialCards || !prevBtn || !nextBtn) return;
+    
+    const cards = testimonialCards.querySelectorAll('.testimony-card');
+    const totalCards = cards.length;
+    let currentIndex = 0;
+    
+    function getViewportInfo() {
+        const containerWidth = testimonialCards.parentElement.offsetWidth;
+        let cardsPerView, cardWidth;
+        
+        if (window.innerWidth <= 768) {
+            cardsPerView = 1;
+            cardWidth = containerWidth;
+        } else if (window.innerWidth <= 1024) {
+            cardsPerView = 2;
+            cardWidth = 320;
+        } else if (window.innerWidth <= 1200) {
+            cardsPerView = 3;
+            cardWidth = 300;
+        } else {
+            cardsPerView = 3;
+            cardWidth = 320;
+        }
+        
+        return { cardsPerView, cardWidth };
+    }
+    
+    function updateCarousel() {
+        const { cardsPerView, cardWidth } = getViewportInfo();
+        const gap = 24; // 1.5rem gap
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        
+        currentIndex = Math.min(currentIndex, maxIndex);
+        currentIndex = Math.max(currentIndex, 0);
+        
+        const translateX = currentIndex * (cardWidth + gap);
+        
+        testimonialCards.style.transform = `translateX(-${translateX}px)`;
+        
+        prevBtn.disabled = currentIndex <= 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+    }
+    
+    function goToPrev() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    }
+    
+    function goToNext() {
+        const { cardsPerView } = getViewportInfo();
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    }
+    
+    // Only manual navigation - no auto-scroll
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        goToPrev();
+    });
+    
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        goToNext();
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            currentIndex = 0;
+            updateCarousel();
+        }, 150);
+    });
+    
+    // Initialize
+    setTimeout(updateCarousel, 100);
+    
+    // NO AUTO-SCROLL INTERVAL - removed completely
+});
+
 </script>
 
     <script src="script.js"></script>
