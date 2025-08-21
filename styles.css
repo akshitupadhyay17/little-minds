@@ -4508,3 +4508,142 @@ body {
 .right-layout.force-member:not(.cho-long-card) {
     grid-template-columns: 2fr 1fr; /* content 2x wider than image */
 }
+
+
+.testimony-card {
+  display: flex;
+  flex-direction: column;
+  height: 380px; /* keep fixed height */
+  min-width: 320px;
+  max-width: 320px;
+}
+
+.testimony-content {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1.5rem;
+  padding-right: 12px; /* extra padding to avoid clipping behind scrollbar */
+  min-height: 0; /* allow flexbox to handle height properly */
+  max-height: 100%; /* fill available height */
+  scrollbar-width: thin;
+  scrollbar-color: #28206c rgba(40, 32, 108, 0.1);
+}
+
+/* Webkit scrollbar styles */
+.testimony-content::-webkit-scrollbar {
+  width: 8px;
+  display: block !important;
+}
+
+.testimony-content::-webkit-scrollbar-track {
+  background: rgba(40, 32, 108, 0.1);
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.testimony-content::-webkit-scrollbar-thumb {
+  background: #28206c;
+  border-radius: 4px;
+  border: 1px solid rgba(40, 32, 108, 0.1);
+}
+
+.testimony-content::-webkit-scrollbar-thumb:hover {
+  background: #3a3191;
+}
+
+.testimony-card {
+  display: flex;
+  flex-direction: column;
+  height: 380px; /* fixed card height */
+  min-width: 320px;
+  max-width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.testimony-content {
+  flex: 1 1 auto;
+  min-height: 0;  /* critical for flexbox scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1.5rem;
+  padding-right: 12px; /* extra space for scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #28206c rgba(40, 32, 108, 0.1);
+}
+
+/* Webkit scrollbar styling */
+.testimony-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.testimony-content::-webkit-scrollbar-track {
+  background: rgba(40, 32, 108, 0.1);
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.testimony-content::-webkit-scrollbar-thumb {
+  background: #28206c;
+  border-radius: 4px;
+  border: 1px solid rgba(40, 32, 108, 0.1);
+}
+
+.testimony-content::-webkit-scrollbar-thumb:hover {
+  background: #3a3191;
+}
+
+/* Remove any line-clamp or overflow hidden from paragraph inside */
+.testimony-content p {
+  white-space: pre-line; /* preserve line breaks */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  padding-right: 4px;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.testimony-content {
+  height: 220px; /* fixed height */
+  max-height: 220px;
+  overflow-y: auto !important; /* ensure vertical scroll */
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #28206c rgba(40, 32, 108, 0.1);
+}
+
+.testimony-content p {
+  white-space: pre-line; /* preserve formatting and line breaks */
+  margin: 0;
+  font-style: italic;
+  color: var(--text-color);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  /* No line-clamp or overflow hidden */
+}
+
+/* Disable line clamp truncation for testimonial paragraphs */
+.testimony-content p {
+  display: block !important; /* override -webkit-box */
+  -webkit-line-clamp: none !important;
+  -webkit-box-orient: initial !important;
+  overflow: visible !important;
+  white-space: pre-line; /* preserve line breaks and wrapping */
+}
+
+/* Ensure testimonial content container is scrollable */
+.testimony-content {
+  height: 220px; /* fixed height as before */
+  max-height: 220px;
+  overflow-y: auto !important;
+  padding-right: 8px;
+}

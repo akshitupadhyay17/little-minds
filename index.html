@@ -818,7 +818,7 @@
 
     <!-- Google Reviews CTA -->
     <div class="testimonials-cta">
-      <a href="https://www.google.com/search?q=little+minds+school+dehradun+reviews" target="_blank" class="google-reviews-btn">
+      <a href="https://www.google.com/maps/place/Little+Minds+School/@30.3634126,78.0607316,17z/data=!3m1!4b1!4m18!1m9!3m8!1s0x3908d6337a559c27:0x4f0064dee0fe0702!2sLittle+Minds+School!8m2!3d30.3634126!4d78.0633065!9m1!1b1!16s%2Fg%2F12ht72t_2!3m7!1s0x3908d6337a559c27:0x4f0064dee0fe0702!8m2!3d30.3634126!4d78.0633065!9m1!1b1!16s%2Fg%2F12ht72t_2?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="google-reviews-btn">
         <i class="fab fa-google"></i>
         <span>Read More Reviews on Google</span>
       </a>
@@ -1068,130 +1068,25 @@
         </div>
     </footer>
     <script>
-// Fixed Testimonials Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     const testimonialCards = document.getElementById('testimonial-cards');
     const prevBtn = document.getElementById('testimonial-prev');
     const nextBtn = document.getElementById('testimonial-next');
-    
+
     if (!testimonialCards || !prevBtn || !nextBtn) return;
-    
+
     const cards = testimonialCards.querySelectorAll('.testimony-card');
     const totalCards = cards.length;
-    let currentIndex = 0;
-    
-    // Calculate cards per view and card width based on screen size
+    let currentIndex = 1; // Start from second position
+
+// Initialize carousel position on load
+setTimeout(updateCarousel, 100);
+
+
     function getViewportInfo() {
         const containerWidth = testimonialCards.parentElement.offsetWidth;
         let cardsPerView, cardWidth;
-        
-        if (window.innerWidth <= 768) {
-            cardsPerView = 1;
-            cardWidth = containerWidth;
-        } else if (window.innerWidth <= 1024) {
-            cardsPerView = 2;
-            cardWidth = 340; // Fixed width for tablet
-        } else if (window.innerWidth <= 1200) {
-            cardsPerView = 3;
-            cardWidth = 320; // Fixed width for smaller desktop
-        } else {
-            cardsPerView = 3;
-            cardWidth = 360; // Fixed width for large desktop
-        }
-        
-        return { cardsPerView, cardWidth };
-    }
-    
-    function updateCarousel() {
-        const { cardsPerView, cardWidth } = getViewportInfo();
-        const gap = 32; // 2rem gap
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        
-        // Ensure currentIndex is within bounds
-        currentIndex = Math.min(currentIndex, maxIndex);
-        currentIndex = Math.max(currentIndex, 0);
-        
-        // Calculate transform based on fixed card width
-        const translateX = currentIndex * (cardWidth + gap);
-        
-        testimonialCards.style.transform = `translateX(-${translateX}px)`;
-        
-        // Update button states
-        prevBtn.disabled = currentIndex <= 0;
-        nextBtn.disabled = currentIndex >= maxIndex;
-        
-        console.log('Current Index:', currentIndex, 'Max Index:', maxIndex); // Debug log
-    }
-    
-    function goToPrev() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
-    }
-    
-    function goToNext() {
-        const { cardsPerView } = getViewportInfo();
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarousel();
-        }
-    }
-    
-    // Event listeners
-    prevBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        goToPrev();
-    });
-    
-    nextBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        goToNext();
-    });
-    
-    // Handle resize with debouncing
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            currentIndex = 0; // Reset to first slide on resize
-            updateCarousel();
-        }, 150);
-    });
-    
-    // Initialize
-    setTimeout(updateCarousel, 100); // Small delay to ensure DOM is ready
-    
-    // Optional: Auto-scroll every 7 seconds (remove if not needed)
-    setInterval(function() {
-        const { cardsPerView } = getViewportInfo();
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        
-        if (currentIndex >= maxIndex) {
-            currentIndex = 0;
-        } else {
-            currentIndex++;
-        }
-        updateCarousel();
-    }, 7000);
-});
-// Testimonials Navigation JavaScript (Manual Only)
-document.addEventListener('DOMContentLoaded', function() {
-    const testimonialCards = document.getElementById('testimonial-cards');
-    const prevBtn = document.getElementById('testimonial-prev');
-    const nextBtn = document.getElementById('testimonial-next');
-    
-    if (!testimonialCards || !prevBtn || !nextBtn) return;
-    
-    const cards = testimonialCards.querySelectorAll('.testimony-card');
-    const totalCards = cards.length;
-    let currentIndex = 0;
-    
-    function getViewportInfo() {
-        const containerWidth = testimonialCards.parentElement.offsetWidth;
-        let cardsPerView, cardWidth;
-        
+
         if (window.innerWidth <= 768) {
             cardsPerView = 1;
             cardWidth = containerWidth;
@@ -1205,33 +1100,33 @@ document.addEventListener('DOMContentLoaded', function() {
             cardsPerView = 3;
             cardWidth = 320;
         }
-        
+
         return { cardsPerView, cardWidth };
     }
-    
+
     function updateCarousel() {
         const { cardsPerView, cardWidth } = getViewportInfo();
-        const gap = 24; // 1.5rem gap
+        const gap = 24; // 1.5rem gap in px
         const maxIndex = Math.max(0, totalCards - cardsPerView);
-        
+
         currentIndex = Math.min(currentIndex, maxIndex);
         currentIndex = Math.max(currentIndex, 0);
-        
+
         const translateX = currentIndex * (cardWidth + gap);
-        
+
         testimonialCards.style.transform = `translateX(-${translateX}px)`;
-        
+
         prevBtn.disabled = currentIndex <= 0;
         nextBtn.disabled = currentIndex >= maxIndex;
     }
-    
+
     function goToPrev() {
         if (currentIndex > 0) {
             currentIndex--;
             updateCarousel();
         }
     }
-    
+
     function goToNext() {
         const { cardsPerView } = getViewportInfo();
         const maxIndex = Math.max(0, totalCards - cardsPerView);
@@ -1240,32 +1135,30 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCarousel();
         }
     }
-    
-    // Only manual navigation - no auto-scroll
+
     prevBtn.addEventListener('click', function(e) {
         e.preventDefault();
         goToPrev();
     });
-    
+
     nextBtn.addEventListener('click', function(e) {
         e.preventDefault();
         goToNext();
     });
-    
+
     let resizeTimer;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
+        resizeTimer = setTimeout(() => {
             currentIndex = 0;
             updateCarousel();
         }, 150);
     });
-    
-    // Initialize
+
+    // Initialize carousel position on load
     setTimeout(updateCarousel, 100);
-    
-    // NO AUTO-SCROLL INTERVAL - removed completely
 });
+
 
 </script>
 
