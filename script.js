@@ -392,3 +392,40 @@ document.addEventListener('DOMContentLoaded', function() {
     animateWithPause();
 });
 
+/* ============================== 
+   DARK MODE TOGGLE 
+============================== */
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+    
+    // Check for saved dark mode preference or default to light mode
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        body.classList.toggle('dark-mode', savedTheme === 'dark');
+        updateToggleIcon(savedTheme === 'dark');
+    }
+    
+    // Dark mode toggle functionality
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            // Update toggle icon
+            updateToggleIcon(isDarkMode);
+        });
+    }
+    
+    function updateToggleIcon(isDarkMode) {
+        if (darkModeToggle) {
+            const icon = darkModeToggle.querySelector('i');
+            if (icon) {
+                icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+    }
+});
