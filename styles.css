@@ -3908,6 +3908,7 @@ a, .accent, .contact-btn, .contact-btn2, .submit-btn {
 .testimonials-cta {
   text-align: center;
   margin-top: 3rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .google-reviews-btn {
@@ -4647,3 +4648,26 @@ body {
   overflow-y: auto !important;
   padding-right: 8px;
 }
+
+.force-behind .section-title p {
+  white-space: nowrap;      /* Prevent line breaks */
+  overflow: hidden;         /* Hide overflow content */
+  text-overflow: ellipsis;  /* Show ... if the text is too long */
+  max-width: 100%;          /* Allow it to use full container width */
+  display: block;           /* Ensure block level */
+  margin: 0 auto;           /* Center if needed */
+}
+
+/* Force paragraph in these sections to be one line */
+.programs .section-title p,
+.testimonies .section-title p,
+.contact .section-title p,
+.alumni .section-title p {
+  white-space: nowrap;      /* Prevent line breaks */
+  overflow: hidden;         /* Hide overflow */
+  text-overflow: ellipsis;  /* Show "..." if text overflows */
+  max-width: 100%;          /* Take full container width */
+  margin: 0 auto;
+  display: block;
+}
+
