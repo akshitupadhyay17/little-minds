@@ -944,6 +944,7 @@ body {
     margin-bottom: 1.5rem;
     font-weight: 600;
     font-style: italic;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .force-content p {
@@ -1007,6 +1008,7 @@ body {
     margin-bottom: 0;
     font-weight: 600;
     font-style: italic;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* ===== PATRONS SECTION ===== */
@@ -1063,6 +1065,7 @@ body {
     margin-bottom: 1.5rem;
     font-weight: 600;
     font-style: italic;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .patron-content p {
@@ -4494,4 +4497,14 @@ body {
   .timescape-floating-elements {
     opacity: 0.5;
   }
+}
+
+.force-member:not(.cho-long-card) {
+    grid-template-columns: 0fr 2fr;
+}
+
+/* Content always bigger, image smaller */
+
+.right-layout.force-member:not(.cho-long-card) {
+    grid-template-columns: 2fr 1fr; /* content 2x wider than image */
 }
