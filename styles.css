@@ -3853,4 +3853,825 @@ body.dark-mode .top-arrow-btn:hover {
         max-height: 200px;
     }
 }
+/* ===== MOBILE HERO SECTION - FIXED STATS ===== */
+.mobile-hero {
+    display: none;
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2d1b69 0%, #1a1540 100%) !important;
+    color: var(--text-white);
+    padding-top: 100px;
+    overflow: hidden;
+}
+
+.mobile-hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.mobile-hero-logo {
+    margin-bottom: 2rem;
+}
+
+.mobile-hero-logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+.mobile-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--accent-gold);
+    line-height: 1.2;
+}
+
+.mobile-hero-tagline {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-faded);
+    font-style: italic;
+}
+
+.mobile-hero-photo {
+    margin: 2rem 0;
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-hero-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Fixed Mobile Hero Stats */
+.mobile-hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem auto 0;
+    max-width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.mobile-stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    min-width: 100px;
+    max-width: 140px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.mobile-stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-stat-item i {
+    font-size: 1.5rem;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.3rem;
+}
+
+.mobile-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-faded);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* Desktop/Mobile Toggle */
+@media (min-width: 1025px) {
+    .hero {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+    }
+    
+    .mobile-hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    
+    .mobile-hero {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+    }
+    
+    .mobile-hero-stats {
+        max-width: 90%;
+        gap: 0.8rem;
+    }
+}
+
+/* Tablet specific adjustments */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .mobile-stat-item {
+        min-width: 120px;
+        max-width: 160px;
+        height: 130px;
+        padding: 1.2rem;
+    }
+    
+    .mobile-stat-number {
+        font-size: 2rem;
+    }
+    
+    .mobile-stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+    .mobile-hero-stats {
+        gap: 0.5rem;
+        margin: 1.5rem auto 0;
+        max-width: 95%;
+    }
+    
+    .mobile-stat-item {
+        min-width: 90px;
+        max-width: 120px;
+        height: 110px;
+        padding: 0.8rem;
+    }
+    
+    .mobile-stat-item i {
+        font-size: 1.3rem;
+    }
+    
+    .mobile-stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .mobile-stat-label {
+        font-size: 0.7rem;
+    }
+}
+
+/* Very small mobile screens */
+@media (max-width: 480px) {
+    .mobile-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .mobile-hero-stats {
+        flex-direction: column;
+        gap: 0.8rem;
+        max-width: 100%;
+        padding: 1rem 0.5rem;
+    }
+    
+    .mobile-stat-item {
+        min-width: 200px;
+        max-width: 250px;
+        height: 100px;
+        padding: 1rem;
+        flex: none;
+    }
+    
+    .mobile-stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .mobile-stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* Dark Mode Support */
+body.dark-mode .mobile-stat-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .mobile-hero h1,
+body.dark-mode .mobile-stat-number {
+    color: var(--accent-gold);
+}
+
+body.dark-mode .mobile-hero-tagline,
+body.dark-mode .mobile-stat-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== FORCE BEHIND SECTION - MOBILE FIXES ===== */
+
+/* Mobile layout for force-behind section */
+@media (max-width: 768px) {
+    .force-member {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+    
+    .force-image {
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: center;
+    }
+    
+    .force-content {
+        grid-column: 1;
+        grid-row: 2;
+        text-align: center;
+    }
+    
+    .force-content h3,
+    .force-content h4 {
+        text-align: center;
+    }
+    
+    .force-content p {
+        text-align: center;
+        max-width: 100%;
+    }
+    
+    .force-image img {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* Override existing left/right layout classes on mobile */
+    .left-layout .force-image,
+    .right-layout .force-image {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .left-layout .force-content,
+    .right-layout .force-content {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    /* Cho long card mobile adjustments */
+    .cho-long-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+    
+    .cho-long-card .cho-content {
+        text-align: center;
+    }
+    
+    .cho-long-card .cho-content h3 {
+        font-size: 2rem;
+    }
+    
+    .cho-long-card .cho-content h4 {
+        font-size: 1.2rem;
+    }
+    
+    .cho-long-card .cho-content p {
+        text-align: center;
+    }
+    
+    .cho-long-card .cho-image img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Even smaller mobile screens */
+@media (max-width: 480px) {
+    .force-image img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .force-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .cho-long-card .cho-image img {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .cho-long-card .cho-content h3 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ===== MOBILE SOCIAL AND FOOTER CENTERING ===== */
+
+/* Center social CTAs on mobile */
+@media (max-width: 768px) {
+    .social-ctas {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.8rem;
+    }
+    
+    .social-cta {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+        font-size: 1.6rem;
+        padding: 1.3rem 2rem;
+        margin: 0 auto;
+    }
+    
+    .social-cta i {
+        font-size: 2rem;
+    }
+    
+    /* Center footer content on mobile */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+    }
+    
+    /* Center footer sections */
+    .footer-section {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 300px;
+    }
+    
+    .footer-section h3 {
+        text-align: center;
+    }
+    
+    .footer-section p {
+        text-align: center;
+        margin: 0 auto 1rem auto;
+    }
+    
+    .footer-section ul {
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .footer-section ul li {
+        text-align: center;
+    }
+    
+    /* Center newsletter form */
+    .newsletter-form {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Center opportunity links */
+    .opportunity-links {
+        align-items: center;
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+    }
+    
+    .opportunity-link {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 1.2rem;
+        font-size: 1rem;
+        margin: 0 auto;
+    }
+    
+    /* Center social links */
+    .social-links {
+        justify-content: center;
+        margin: 1.5rem auto 0;
+    }
+    
+    /* Center footer bottom text */
+    .footer-bottom {
+        text-align: center;
+        padding: 2rem 1rem 1rem;
+    }
+}
+
+/* Additional centering for smaller mobile screens */
+@media (max-width: 480px) {
+    .social-section {
+        padding: 4rem 1rem;
+    }
+    
+    .social-section .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .social-section .section-title h2 {
+        text-align: center;
+        font-size: 2rem;
+    }
+    
+    .social-section .section-title p {
+        text-align: center;
+        font-size: 1rem;
+        margin: 0 auto 3rem;
+        max-width: 100%;
+    }
+    
+    .social-cta {
+        max-width: 280px;
+        font-size: 1.4rem;
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .social-cta i {
+        font-size: 1.8rem;
+    }
+    
+    /* Footer adjustments for very small screens */
+    .footer {
+        padding: 3rem 1rem 1rem;
+    }
+    
+    .footer-content {
+        gap: 2rem;
+    }
+    
+    .footer-section {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .opportunity-link {
+        max-width: 100%;
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .newsletter-form input,
+    .newsletter-form button {
+        max-width: 100%;
+    }
+}
+
+/* Ensure centering for all footer elements */
+@media (max-width: 768px) {
+    .footer-section:nth-child(1),
+    .footer-section:nth-child(2),
+    .footer-section:nth-child(3),
+    .footer-section:nth-child(4) {
+        text-align: center;
+        justify-self: center;
+        align-self: center;
+    }
+    
+    .footer-section ul li a {
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+/* ===== MOBILE CONTACT SECTION CENTERING ===== */
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 4rem 1rem;
+    }
+    
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 100%;
+        margin: 2rem auto 0;
+        text-align: center;
+    }
+    
+    /* Center contact left section */
+    .contact-left {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    
+    .contact-left h3 {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .contact-left p {
+        text-align: center;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+    
+    /* Center contact details */
+    .contact-details {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .contact-detail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        max-width: 300px;
+        width: 100%;
+        border-radius: 12px;
+    }
+    
+    .contact-detail-item:hover {
+        background: rgba(112, 60, 225, 0.08);
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+    
+    .contact-detail-content {
+        text-align: center;
+        width: 100%;
+    }
+    
+    .contact-detail-content h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+    
+    .contact-detail-content p,
+    .contact-detail-content a {
+        text-align: center;
+        font-size: 1rem;
+        margin: 0;
+    }
+    
+    /* Center contact form */
+    .contact-right {
+        background: #f8f9fa;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin: 0 auto;
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .contact-form-container h3 {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+        text-align: left; /* Keep form fields left-aligned for better UX */
+        max-width: 100%;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .form-group label {
+        text-align: left;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .submit-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Additional styling for smaller mobile screens */
+@media (max-width: 480px) {
+    .contact {
+        padding: 3rem 0.5rem;
+    }
+    
+    .contact-left h3 {
+        font-size: 1.6rem;
+    }
+    
+    .contact-left p {
+        font-size: 0.95rem;
+    }
+    
+    .contact-right {
+        padding: 1.5rem;
+    }
+    
+    .contact-form-container h3 {
+        font-size: 1.4rem;
+    }
+    
+    .contact-detail-item {
+        max-width: 280px;
+        padding: 0.8rem;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .contact-detail-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .contact-detail-content p,
+    .contact-detail-content a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark mode adjustments for mobile contact */
+@media (max-width: 768px) {
+    body.dark-mode .contact-detail-item:hover {
+        background: rgba(255, 215, 0, 0.1);
+    }
+    
+    body.dark-mode .contact-right {
+        background: rgba(255, 255, 255, 0.05) !important;
+    }
+}
+
+
+/* ===== SECTION TITLE PARAGRAPH FIXES FOR MOBILE ===== */
+
+/* Remove the forced single-line styling on mobile for better readability */
+@media (max-width: 768px) {
+    .force-behind .section-title p,
+    .programs .section-title p,
+    .testimonies .section-title p,
+    .contact .section-title p,
+    .alumni .section-title p,
+    .social-section .section-title p,
+    .patrons-section .section-title p {
+        white-space: normal !important;      /* Allow line breaks on mobile */
+        overflow: visible !important;        /* Show all content */
+        text-overflow: initial !important;   /* Remove ellipsis */
+        max-width: 100% !important;          /* Full width available */
+        display: block !important;           /* Keep block display */
+        margin: 0 auto !important;           /* Keep centering */
+        text-align: center !important;       /* Center align text */
+        line-height: 1.6 !important;         /* Better line spacing */
+        padding: 0 1rem !important;          /* Add some padding */
+    }
+    
+    /* Specific adjustments for very small screens */
+    @media (max-width: 480px) {
+        .force-behind .section-title p,
+        .programs .section-title p,
+        .testimonies .section-title p,
+        .contact .section-title p,
+        .alumni .section-title p,
+        .social-section .section-title p {
+            font-size: 1rem !important;      /* Slightly smaller font */
+            padding: 0 0.5rem !important;    /* Less padding on small screens */
+            line-height: 1.5 !important;     /* Tighter line spacing */
+        }
+    }
+}
+
+/* Keep desktop behavior for larger screens */
+@media (min-width: 769px) {
+    .force-behind .section-title p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .programs .section-title p,
+    .testimonies .section-title p,
+    .contact .section-title p,
+    .alumni .section-title p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* Additional mobile-specific section title improvements */
+@media (max-width: 768px) {
+    .section-title {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .subsection-title {
+        font-size: 1.5rem !important;
+        margin: 2rem 0 1.5rem !important;
+        padding: 0 1rem !important;
+        line-height: 1.3 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title h2 {
+        font-size: 1.8rem !important;
+    }
+    
+    .subsection-title {
+        font-size: 1.4rem !important;
+    }
+}
 

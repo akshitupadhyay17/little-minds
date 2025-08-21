@@ -429,3 +429,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+/* ============================== MOBILE LOGO NAVIGATION ============================== */
+document.addEventListener('DOMContentLoaded', function() {
+    const logo = document.querySelector('.logo');
+    const logoLink = document.querySelector('.logo a');
+    
+    function handleLogoClick(e) {
+        // Check if we're on mobile (same breakpoint as mobile hero display)
+        if (window.innerWidth <= 1024) {
+            e.preventDefault(); // Prevent default link behavior
+            
+            // Check if mobile hero exists and is visible
+            const mobileHero = document.querySelector('.mobile-hero');
+            if (mobileHero && window.getComputedStyle(mobileHero).display !== 'none') {
+                // Scroll to mobile hero section
+                mobileHero.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            } else {
+                // Fallback: scroll to top of page
+                window.scrollTo({ 
+                    top: 0, 
+                    behavior: 'smooth' 
+                });
+            }
+            
+            // Close mobile nav if it's open
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.querySelector('.mobile-nav');
+            if (hamburger && mobileNav && mobileNav.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        // On desktop, let the default behavior work (go to home page or desktop hero)
+    }
+    
+    // Add click event listener to logo
+    if (logo) {
+        logo.addEventListener('click', handleLogoClick);
+    }
+    
+    // Also add to logo link if it exists separately
+    if (logoLink && logoLink !== logo) {
+        logoLink.addEventListener('click', handleLogoClick);
+    }
+    
+    // Handle window resize to ensure proper behavior when switching between mobile/desktop
+    window.addEventListener('resize', function() {
+        // Remove any existing event listeners and re-add them
+        // This ensures consistent behavior when switching between breakpoints
+    });
+});
+
