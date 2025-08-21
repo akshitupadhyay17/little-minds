@@ -3784,3 +3784,73 @@ body.dark-mode .top-arrow-btn {
 body.dark-mode .top-arrow-btn:hover {
   color: #1a1540 !important; /* Slightly darker on hover */
 }
+
+@media (max-width: 1440px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links,
+    .nav .contact-btn {
+        display: none;
+    }
+    
+    /* Keep the nav-ctas (dark mode toggle and WhatsApp) visible on tablet */
+    .nav-ctas {
+        display: inline-flex;
+    }
+    
+    /* Ensure the dark mode toggle and WhatsApp button remain visible */
+    .dark-mode-toggle,
+    .whatsapp-btn {
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 1440px) {
+    /* Hamburger menu activation */
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links,
+    .nav .contact-btn {
+        display: none;
+    }
+    
+    .nav-ctas {
+        display: inline-flex;
+    }
+    
+    /* Existing responsive adjustments */
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .timescape-content,
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .testimony-card {
+        flex: 0 0 300px;
+        min-width: 300px;
+        max-width: 300px;
+        height: 360px;
+    }
+
+    .testimony-content {
+        height: 200px;
+        max-height: 200px;
+    }
+}
+
