@@ -4675,3 +4675,363 @@ body.dark-mode .mobile-stat-label {
     }
 }
 
+/* ===== COMPLETE DESKTOP/MOBILE HERO TOGGLE FIX ===== */
+
+/* Desktop - Show desktop hero, hide mobile hero */
+@media (min-width: 1025px) {
+    .hero {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .mobile-hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        z-index: -1 !important;
+    }
+}
+
+/* Mobile/Tablet - Hide desktop hero, show mobile hero */
+@media (max-width: 1024px) {
+    .hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        z-index: -1 !important;
+        pointer-events: none !important;
+    }
+    
+    .mobile-hero {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .mobile-hero-stats {
+        max-width: 90%;
+        gap: 0.8rem;
+    }
+}
+
+/* Force hide desktop hero in dark mode on mobile/tablet */
+@media (max-width: 1024px) {
+    body.dark-mode .hero,
+    body.light-mode .hero,
+    body:not(.dark-mode) .hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+        top: -9999px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        z-index: -1 !important;
+        pointer-events: none !important;
+        transform: translateX(-100vw) !important;
+    }
+    
+    /* Ensure mobile hero is always visible on mobile */
+    body.dark-mode .mobile-hero,
+    body.light-mode .mobile-hero,
+    body:not(.dark-mode) .mobile-hero {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+}
+
+/* Additional safety measures to prevent desktop hero bleeding through */
+@media (max-width: 1024px) {
+    /* Remove any background images from desktop hero */
+    .hero {
+        background-image: none !important;
+        background: transparent !important;
+    }
+    
+    /* Hide all desktop hero child elements */
+    .hero * {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+    
+    /* Ensure mobile hero takes full precedence */
+    .mobile-hero {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* Force override any conflicting styles */
+@media (max-width: 1024px) {
+    section.hero {
+        display: none !important;
+    }
+    
+    section.mobile-hero {
+        display: flex !important;
+    }
+    
+    /* Override any specific dark mode hero styles */
+    body.dark-mode section.hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+    
+    body.dark-mode section.mobile-hero {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+    }
+}
+
+/* Tablet specific fixes */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .hero {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -10000px !important;
+        top: -10000px !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        z-index: -999 !important;
+        pointer-events: none !important;
+    }
+    
+    .mobile-hero {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    .mobile-hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 600px;
+        margin: 2rem auto;
+        gap: 1rem;
+    }
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+    .hero {
+        content-visibility: hidden !important;
+        contain: layout style paint !important;
+    }
+    
+    .mobile-hero {
+        content-visibility: visible !important;
+        contain: none !important;
+    }
+}
+
+/* ===== ENHANCED MOBILE HERO BACKGROUND ===== */
+
+.mobile-hero {
+    display: none;
+    position: relative;
+    min-height: 100vh;
+    /* Enhanced gradient with multiple purple tones and subtle animation */
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(112, 60, 225, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 214, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(160, 132, 232, 0.4) 0%, transparent 50%),
+        linear-gradient(135deg, #2d1b69 0%, #1a1540 25%, #28206c 50%, #1e1a52 75%, #1a1540 100%);
+    background-size: 120% 120%, 100% 100%, 110% 110%, 100% 100%;
+    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+    animation: gradientFloat 15s ease-in-out infinite;
+    color: var(--text-white);
+    padding-top: 100px;
+    overflow: hidden;
+}
+
+/* Floating background animation */
+@keyframes gradientFloat {
+    0%, 100% { 
+        background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+        background-size: 120% 120%, 100% 100%, 110% 110%, 100% 100%;
+    }
+    25% { 
+        background-position: 10% 20%, 90% 10%, 60% 90%, 5% 10%;
+        background-size: 130% 130%, 110% 110%, 120% 120%, 100% 100%;
+    }
+    50% { 
+        background-position: 20% 10%, 80% 20%, 40% 80%, 10% 5%;
+        background-size: 125% 125%, 105% 105%, 115% 115%, 100% 100%;
+    }
+    75% { 
+        background-position: 15% 30%, 85% 15%, 55% 85%, 8% 15%;
+        background-size: 135% 135%, 115% 115%, 125% 125%, 100% 100%;
+    }
+}
+
+/* Add floating particles/elements */
+.mobile-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 214, 0, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(112, 60, 225, 0.8), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 214, 0, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.4), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Sparkle animation for floating particles */
+@keyframes sparkle {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-5px) translateX(-3px); }
+    75% { transform: translateY(-15px) translateX(8px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Add a subtle overlay pattern */
+.mobile-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 40%, rgba(255, 214, 0, 0.05) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(112, 60, 225, 0.05) 50%, transparent 60%);
+    background-size: 60px 60px, 80px 80px;
+    animation: patternMove 25s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Pattern movement animation */
+@keyframes patternMove {
+    0% { background-position: 0px 0px, 0px 0px; }
+    100% { background-position: 60px 60px, -80px 80px; }
+}
+
+/* Enhanced mobile hero content positioning */
+.mobile-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+/* Add glowing effect to the logo and title */
+.mobile-hero-logo img {
+    filter: drop-shadow(0 0 20px rgba(255, 214, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.mobile-hero-logo img:hover {
+    filter: drop-shadow(0 0 30px rgba(255, 214, 0, 0.5));
+    transform: scale(1.05);
+}
+
+.mobile-hero h1 {
+    text-shadow: 
+        0 0 10px rgba(255, 214, 0, 0.5),
+        0 0 20px rgba(255, 214, 0, 0.3),
+        0 0 30px rgba(255, 214, 0, 0.1);
+}
+
+/* Enhanced stat cards with better visual appeal */
+.mobile-stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.mobile-stat-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.mobile-stat-item i {
+    filter: drop-shadow(0 0 10px rgba(255, 214, 0, 0.6));
+}
+
+/* Dark mode adjustments for enhanced background */
+body.dark-mode .mobile-hero {
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(112, 60, 225, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 214, 0, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(160, 132, 232, 0.5) 0%, transparent 50%),
+        linear-gradient(135deg, #1a1540 0%, #0d0b2a 25%, #1e1a52 50%, #12102d 75%, #0d0b2a 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .mobile-hero {
+        background-size: 150% 150%, 120% 120%, 130% 130%, 100% 100%;
+    }
+    
+    .mobile-hero::before {
+        background-size: 150px 75px;
+    }
+    
+    .mobile-hero::after {
+        background-size: 40px 40px, 60px 60px;
+    }
+}
+
