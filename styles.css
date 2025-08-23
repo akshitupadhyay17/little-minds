@@ -6058,3 +6058,8 @@ body.dark-mode .mobile-hero::after {
   pointer-events: none !important;
   z-index: 0 !important;
 }
+
+/* Slower alumni slider speed for mobile site */
+.alumni-slider-track {
+    animation-duration: 30s !important;
+}
