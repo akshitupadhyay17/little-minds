@@ -1022,113 +1022,61 @@
     </div>
 </footer>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
   const testimonialCards = document.getElementById('testimonial-cards');
-  const prevBtn = document.getElementById('testimonial-prev');
-  const nextBtn = document.getElementById('testimonial-next');
+  const prevBtn = document.querySelector('.testimonial-prev');
+  const nextBtn = document.querySelector('.testimonial-next');
+  const cards = testimonialCards.children;
+  const gap = 24; // gap in pixels between cards
 
-  if (!testimonialCards || !prevBtn || !nextBtn) return;
+  let currentIndex = 0;
 
-  const cards = testimonialCards.querySelectorAll('.testimony-card');
-  const totalCards = cards.length;
-  let currentIndex = 1; // Start at first card
-
-  const gap = 24; // px gap between cards (consistent with CSS)
-
-  // Compute cards per view and card width based on viewport
-  function getViewportInfo() {
-    const containerWidth = testimonialCards.parentElement.offsetWidth;
-    let cardsPerView, cardWidth;
-
-    if (window.innerWidth <= 768) {
-      cardsPerView = 1;
-      cardWidth = containerWidth; // full container width on mobile
-    } else if (window.innerWidth <= 1024) {
-      cardsPerView = 2;
-      cardWidth = 320; // fixed width for medium screens
-    } else if (window.innerWidth <= 1200) {
-      cardsPerView = 3;
-      cardWidth = 300; // slight smaller cards on small desktops
-    } else {
-      cardsPerView = 3;
-      cardWidth = 320; // standard desktop width
-    }
-
-    return { cardsPerView, cardWidth };
+  function getVisibleCount() {
+    return window.innerWidth >= 1025 ? 3 : 1;
   }
 
-  function clampIndex(index, maxIndex) {
-    if (index < 0) return 0;
-    if (index > maxIndex) return maxIndex;
-    return index;
+  function getCardWidth() {
+    // Compute exact card width in px based on container width and gap
+    const containerWidth = testimonialCards.parentElement.clientWidth;
+    const visibleCount = getVisibleCount();
+    return (containerWidth - gap * (visibleCount - 1)) / visibleCount;
   }
 
   function updateCarousel() {
-    const { cardsPerView, cardWidth } = getViewportInfo();
-    const maxIndex = Math.max(0, totalCards - cardsPerView);
+    const visibleCount = getVisibleCount();
+    const cardWidth = getCardWidth();
 
-    currentIndex = clampIndex(currentIndex, maxIndex);
+    // Calculate max index (last visible card start)
+    const maxIndex = cards.length - visibleCount;
 
-    // Calculate total slide distance including gaps (gap after every card except last)
-    // So translateX = currentIndex * (cardWidth + gap)
-    const translateX = currentIndex * (cardWidth + gap);
+    if (currentIndex < 0) currentIndex = 0;
+    if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-    // Apply smooth transform
-    testimonialCards.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
-    testimonialCards.style.transform = `translateX(-${translateX}px)`;
+    // TranslateX amount = -(cardWidth + gap) * currentIndex
+    const translateX = -currentIndex * (cardWidth + gap);
+    testimonialCards.style.transform = `translateX(${translateX}px)`;
 
-    // Disable buttons at boundaries
+    // Disable buttons if at start or end
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex === maxIndex;
-
-    // Optional: visually dim disabled buttons for feedback
-    prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
-    nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
   }
 
-  function goToPrev() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateCarousel();
-    }
-  }
-
-  function goToNext() {
-    const { cardsPerView } = getViewportInfo();
-    const maxIndex = Math.max(0, totalCards - cardsPerView);
-    if (currentIndex < maxIndex) {
-      currentIndex++;
-      updateCarousel();
-    }
-  }
-
-  prevBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    goToPrev();
+  prevBtn.addEventListener('click', () => {
+    currentIndex--;
+    updateCarousel();
   });
 
-  nextBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    goToNext();
+  nextBtn.addEventListener('click', () => {
+    currentIndex++;
+    updateCarousel();
   });
 
-  // Debounced resize handler to recalc layout and reset index if needed
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // Reset index if current index might be out of bounds after resize
-      const { cardsPerView } = getViewportInfo();
-      const maxIndex = Math.max(0, totalCards - cardsPerView);
-
-      // Keep currentIndex but clamp it
-      currentIndex = clampIndex(currentIndex, maxIndex);
-
-      updateCarousel();
-    }, 200);
+  window.addEventListener('resize', () => {
+    // On window resize reset index if needed & update slider
+    currentIndex = 0;
+    updateCarousel();
   });
 
-  // Initialize on page load
   updateCarousel();
 });
 
