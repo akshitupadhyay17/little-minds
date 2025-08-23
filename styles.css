@@ -5584,3 +5584,49 @@ body.dark-mode .top-arrow-btn:hover {
     opacity: 1;
     visibility: visible;
 }
+
+.testimonials-container {
+  position: relative;
+  width: 100%;
+  height: 420px; /* Increased from 400px to 420px */
+  overflow: hidden;
+}
+
+#testimonial-cards {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateX(0);
+  height: 100%;
+  padding-top: 10px; /* Push cards down to allow space for hover effect */
+}
+
+@media (max-width: 1024px) {
+  .testimonials-container {
+    height: 400px; /* Increased from 380px */
+  }
+  
+  #testimonial-cards {
+    padding-top: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    height: 400px; /* Increased from 360px */
+  }
+  
+  #testimonial-cards {
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-container {
+    height: 380px; /* Increased from 340px */
+  }
+  
+  #testimonial-cards {
+    padding-top: 10px;
+  }
+}
