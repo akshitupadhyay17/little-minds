@@ -5124,3 +5124,320 @@ body.dark-mode .footer-registration p {
         padding: 0 0.5rem !important;
     }
 }
+
+/* Footer contact links - yellow hover instead of underline */
+.footer .contact-detail-content a {
+    color: var(--text-faded);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .contact-detail-content a:hover {
+    color: var(--accent-gold) !important; /* Yellow on hover */
+    text-decoration: none !important; /* Remove underline */
+}
+
+/* Dark mode support */
+body.dark-mode .footer .contact-detail-content a {
+    color: var(--text-faded);
+    text-decoration: none;
+}
+
+body.dark-mode .footer .contact-detail-content a:hover {
+    color: var(--accent-gold) !important; /* Yellow on hover in dark mode */
+    text-decoration: none !important; /* Remove underline */
+}
+
+/* Override any existing footer link styles */
+.footer .footer-contact-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .footer-contact-link:hover {
+    color: var(--accent-gold) !important; /* Yellow on hover */
+    text-decoration: none !important; /* No underline */
+}
+
+/* Ensure all footer links follow this behavior */
+.footer-section a:not(.social-links a):not(.opportunity-link) {
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:not(.social-links a):not(.opportunity-link):hover {
+    color: var(--accent-gold) !important;
+    text-decoration: none !important;
+}
+
+
+/* ===== INCREASE OVERALL TEXT SIZES ===== */
+
+/* Base font size increase */
+body {
+    font-size: 1.1rem; /* Increased from default */
+}
+
+/* Section titles */
+.section-title h2 {
+    font-size: 2.8rem; /* Increased from 2.5rem */
+}
+
+.section-title p {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.subsection-title {
+    font-size: 2.2rem; /* Increased from 2rem */
+}
+
+/* Hero section */
+.hero h1 {
+    font-size: 3.8rem; /* Increased from 3.5rem */
+}
+
+.hero-tagline {
+    font-size: 1.3rem; /* Added/increased */
+}
+
+.lm-ethos h3 {
+    font-size: 2.4rem; /* Increased from 2.2rem */
+}
+
+.lm-ethos p {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+/* Timescape section */
+.timescape .section-title h2 {
+    font-size: 3rem; /* Increased from 2.8rem */
+}
+
+.timescape-story p {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+.timescape-story p:first-child {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+/* Team section */
+.founder-info h3,
+.member-info h3 {
+    font-size: 1.5rem; /* Increased from 1.4rem */
+}
+
+.founder-info h4,
+.member-info h4 {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.founder-info .description,
+.member-info p {
+    font-size: 1.05rem; /* Increased from 0.95rem */
+}
+
+/* Force behind section */
+.force-content h3 {
+    font-size: 2.2rem; /* Increased from 2rem */
+}
+
+.force-content h4 {
+    font-size: 1.3rem; /* Increased from 1.2rem */
+}
+
+.force-content p {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+.cho-long-card .cho-content h3 {
+    font-size: 2.7rem; /* Increased from 2.5rem */
+}
+
+.cho-long-card .cho-content h4 {
+    font-size: 1.5rem; /* Increased from 1.4rem */
+}
+
+.cho-long-card .cho-content p {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+/* Patron section */
+.patron-content h3 {
+    font-size: 2rem; /* Increased from 1.8rem */
+}
+
+.patron-content h4 {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.patron-content p {
+    font-size: 1.05rem; /* Increased from 0.95rem */
+}
+
+/* Programs section */
+.container-header h3 {
+    font-size: 2rem; /* Increased from 1.8rem */
+}
+
+.program-overlay h4 {
+    font-size: 2rem; /* Increased from 1.8rem */
+}
+
+.modal-content h2 {
+    font-size: 2.4rem; /* Increased from 2.2rem */
+}
+
+.modal-content h3 {
+    font-size: 1.4rem; /* Increased from 1.3rem */
+}
+
+.modal-content p {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+/* Testimonials */
+.testimony-content p {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+.author-info h4 {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.author-info span {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+/* Alumni section */
+.alumni-info h3 {
+    font-size: 1.4rem; /* Increased from 1.3rem */
+}
+
+.current-school span {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+/* Contact section */
+.contact-left h3 {
+    font-size: 2.2rem; /* Increased from 2rem */
+}
+
+.contact-left p {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.contact-form-container h3 {
+    font-size: 2rem; /* Increased from 1.8rem */
+}
+
+.form-group label {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    font-size: 1.1rem; /* Increased from 1rem */
+}
+
+.contact-detail-content h4 {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.contact-detail-content p,
+.contact-detail-content a {
+    font-size: 1rem; /* Increased */
+}
+
+/* Footer */
+.footer-section h3 {
+    font-size: 1.3rem; /* Increased from 1.2rem */
+}
+
+.footer-section p {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+.footer-section ul li a {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+.footer-registration p {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+.footer-bottom {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+/* Buttons */
+.contact-btn,
+.contact-btn2,
+.submit-btn,
+.whatsapp-btn {
+    font-size: 1rem; /* Increased from 0.9rem */
+}
+
+.contact-btn2 {
+    font-size: 1.2rem; /* Increased from 1.1rem */
+}
+
+/* Social section */
+.social-section .section-title h2 {
+    font-size: 2.7rem; /* Increased from 2.5rem */
+}
+
+.social-section .section-title p {
+    font-size: 1.3rem; /* Increased from 1.2rem */
+}
+
+.social-cta {
+    font-size: 1.9rem; /* Increased from 1.8rem */
+}
+
+/* Mobile responsiveness - maintain proportions */
+@media (max-width: 768px) {
+    body {
+        font-size: 1.05rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2.2rem; /* Increased from 2rem */
+    }
+    
+    .section-title p {
+        font-size: 1.1rem; /* Increased from 1rem */
+    }
+    
+    .hero h1 {
+        font-size: 2.7rem; /* Increased from 2.5rem */
+    }
+    
+    .lm-ethos h3 {
+        font-size: 2rem; /* Increased from 1.8rem */
+    }
+    
+    .lm-ethos p {
+        font-size: 1.1rem; /* Increased from 1rem */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 1rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem; /* Increased from 1.8rem */
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem; /* Increased from 2rem */
+    }
+    
+    .lm-ethos h3 {
+        font-size: 1.8rem; /* Increased from 1.6rem */
+    }
+}
