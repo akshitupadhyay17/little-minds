@@ -5441,3 +5441,25 @@ body {
         font-size: 1.8rem; /* Increased from 1.6rem */
     }
 }
+
+/* Keep email link on one line */
+.footer .contact-detail-content a[href*="mailto"] {
+    white-space: nowrap; /* Prevents line breaks */
+    display: inline-block; /* Keeps it as a single block */
+}
+
+/* Alternative - target the specific email link */
+.footer-contact-link[href*="mailto"] {
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+/* Mobile responsiveness - allow wrapping on very small screens if needed */
+@media (max-width: 480px) {
+    .footer .contact-detail-content a[href*="mailto"],
+    .footer-contact-link[href*="mailto"] {
+        white-space: normal; /* Allow wrapping on very small screens */
+        word-break: break-all; /* Break long email if absolutely necessary */
+    }
+}
