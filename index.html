@@ -34,24 +34,27 @@
     </ul>
 
     <div class="nav-ctas">
-      <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn contact-btn">
+      <a href="https://wa.me/919557505078?text=Hi%2C%0A%0AI%20am%20looking%20forward%20to%20enrol%20my%20child%20at%20*Little%20Minds%20School*.%20Kindly%20connect%20at%20an%20earliest.%0A%0AThank%20you!" 
+         class="whatsapp-btn contact-btn" target="_blank">
         <i class="fab fa-whatsapp" aria-hidden="true"></i>
         Get In Touch
       </a>
+
       <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle theme">
         <i class="fas fa-moon" aria-hidden="true"></i>
       </button>
+
       <button class="hamburger" id="hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
-    </div>
+    </div> <!-- ✅ all CTAs wrapped together -->
   </nav>
 
   <!-- Mobile Navigation -->
-<div class="mobile-nav">
+  <div class="mobile-nav">
     <ul>
-        <li><a href="#mobile-hero">Home</a></li>
-        <li><a href="#timescape">Our Timescape</a></li>
+      <li><a href="#mobile-hero">Home</a></li>
+      <li><a href="#timescape">Our Timescape</a></li>
       <li><a href="#force-behind">The Force Behind</a></li>
       <li><a href="#programs">Programs</a></li>
       <li><a href="#alumni">Alumni</a></li>
@@ -59,15 +62,17 @@
       <li><a href="#social">Social Media</a></li>
       <li><a href="#contact">Contact Us</a></li>
     </ul>
-    <div class="mobile-nav-ctas">
-        <a href="https://wa.me/919410703999" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span>Get In Touch</span>
-        </a>
-    </div>
-</div>
 
+    <div class="mobile-nav-ctas">
+      <a href="https://wa.me/919557505078?text=Hi%2C%0A%0AI%20am%20looking%20forward%20to%20enrol%20my%20child%20at%20*Little%20Minds%20School*.%20Kindly%20connect%20at%20an%20earliest.%0A%0AThank%20you!" 
+         class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>Get In Touch</span>
+      </a>
+    </div>
+  </div>
 </header>
+
 
 <script>
 (function(){
@@ -817,7 +822,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title fade-in">
-                <h2>Contact Us - Inquiring</h2>
+                <h2>Contact Us</h2>
                 <p>Ready to give your child the best start in their educational journey?</p>
             </div>
             
@@ -884,8 +889,6 @@
               <option value="">Select</option>
               <option>Girl</option>
               <option>Boy</option>
-              <option>Prefer not to say</option>
-              <option>Other</option>
             </select>
           </div>
           <div class="form-group">
@@ -1029,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cards = testimonialCards.children;
   const gap = 24; // gap in pixels between cards
 
-  let currentIndex = 0;
+  let currentIndex = 1;
 
   function getVisibleCount() {
     return window.innerWidth >= 1025 ? 3 : 1;
@@ -1079,6 +1082,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateCarousel();
 });
+
 
 </script>
 

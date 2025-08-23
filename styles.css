@@ -5919,3 +5919,44 @@ body.dark-mode .testimonial-nav-btn:disabled {
     height: 360px;
   }
 }
+
+.testimony-content p {
+  white-space: normal;       /* Allow normal wrapping */
+  overflow-wrap: normal;     /* Prevent breaking words */
+  word-break: normal;        /* Prevent breaking words */
+  hyphens: none;             /* Optional: allow hyphenation at valid points */
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-style: italic;
+  margin: 0;
+  padding-right: 4px;
+  text-align: justify;
+}
+
+/* ===== WHATSAPP CTA FIX - KEEP SAME IN DARK/LIGHT ===== */
+.mobile-nav-ctas .whatsapp-btn,
+body.dark-mode .mobile-nav-ctas .whatsapp-btn {
+  background: #ffd600 !important;   /* Bright yellow */
+  color: #28206c !important;        /* Dark purple text */
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 1rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mobile-nav-ctas .whatsapp-btn i,
+body.dark-mode .mobile-nav-ctas .whatsapp-btn i,
+.mobile-nav-ctas .whatsapp-btn span,
+body.dark-mode .mobile-nav-ctas .whatsapp-btn span {
+  color: #28206c !important;  /* Ensure icon/text stays dark */
+}
+
+.mobile-nav-ctas .whatsapp-btn:hover,
+body.dark-mode .mobile-nav-ctas .whatsapp-btn:hover {
+  background: #eec900 !important;  /* Slightly darker yellow */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 214, 0, 0.3);
+}
