@@ -5630,3 +5630,86 @@ body.dark-mode .top-arrow-btn:hover {
     padding-top: 10px;
   }
 }
+
+/* ----------------------------------------------
+   DARK MODE ENHANCED BACKGROUNDS FOR ALL SECTIONS
+   ---------------------------------------------- */
+body.dark-mode section:not(.hero):not(.footer):not(.header) {
+    position: relative;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(112, 60, 225, 0.45) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 214, 0, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(160, 132, 232, 0.45) 0%, transparent 50%),
+        linear-gradient(135deg, #1a1540 0%, #0d0b2a 25%, #1e1a52 50%, #12102d 75%, #0d0b2a 100%);
+    background-size: 120% 120%, 100% 100%, 110% 110%, 100% 100%;
+    background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+    animation: gradientFloat 20s ease-in-out infinite;
+    overflow: hidden;
+}
+
+/* Floating particle layer for all dark sections */
+body.dark-mode section:not(.hero):not(.footer):not(.header)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 214, 0, 0.7), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(112, 60, 225, 0.8), transparent);
+    background-repeat: repeat;
+    background-size: 200px 120px;
+    animation: sparkle 25s linear infinite;
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+/* Overlay pattern for texture */
+body.dark-mode section:not(.hero):not(.footer):not(.header)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(45deg, transparent 40%, rgba(255, 214, 0, 0.05) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(112, 60, 225, 0.05) 50%, transparent 60%);
+    background-size: 60px 60px, 80px 80px;
+    animation: patternMove 35s linear infinite;
+    pointer-events: none;
+    opacity: 0.25;
+    z-index: 0;
+}
+
+body.dark-mode section>* {
+    position: relative;
+    z-index: 1; /* keep text above background layers */
+}
+
+.current-school span {
+  white-space: normal;        /* allow wrapping */
+  word-break: normal;         /* prevent arbitrary word breaks */
+  overflow-wrap: break-word;  /* allow normal wrapping within words */
+  hyphens: none;              /* disable automatic hyphenation */
+  -webkit-hyphens: none;      /* for Safari */
+  -moz-hyphens: none;         /* for Firefox */
+  -ms-hyphens: none;          /* for IE */
+}
+
+body.dark-mode .testimonial-nav-btn {
+  background: #ffd600; /* yellow/gold background in dark mode */
+  color: #28206c; /* dark purple text/icon color */
+  border: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .testimonial-nav-btn:hover:not(:disabled) {
+  background: #eec900; /* slightly darker gold on hover */
+  color: #1a1540; /* darker text/icon on hover */
+}
+
+/* Optional: Disabled button style */
+body.dark-mode .testimonial-nav-btn:disabled {
+  background: #444444;
+  color: #999999;
+  box-shadow: none;
+  cursor: not-allowed;
+}

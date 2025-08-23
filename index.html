@@ -320,11 +320,11 @@
         <div class="timescape-content">
             <!-- Video Card -->
             <div class="timescape-card fade-in">
-    <iframe width="355" height="200" 
-            src="https://www.youtube.com/embed/yix0hbrcJjM?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=yix0hbrcJjM" 
-            title="Little Minds Pre-School- Documentary" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    <iframe width="355" height="200"
+            src="https://www.youtube.com/embed/Pa7wvaDtYOU?autoplay=1&mute=1&controls=1&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=Pa7wvaDtYOU"
+            title="Little Minds Pre-School- Documentary"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
 </div>
 
@@ -688,6 +688,20 @@
                     </div>
                 </div>
 
+                <!-- New Alumni Card: Nelwin Date Modeste -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/nelvin.JPG" alt="Nelwin Date Modeste">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Nelwin Date Modeste</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Woodstock Mussoorie</span>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- Duplicate Cards for Seamless Loop -->
                 <div class="alumni-card">
@@ -765,6 +779,19 @@
                         <div class="current-school">
                             <i class="fas fa-graduation-cap"></i>
                             <span>Brightlands</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Alumni Card: Nelwin Date Modeste -->
+                <div class="alumni-card">
+                    <div class="alumni-image">
+                        <img src="img/alumni/nelvin.JPG" alt="Nelwin Date Modeste">
+                    </div>
+                    <div class="alumni-info">
+                        <h3>Nelwin Date Modeste</h3>
+                        <div class="current-school">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Woodstock Mussoorie</span>
                         </div>
                     </div>
                 </div>
@@ -1125,96 +1152,114 @@
 </footer>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const testimonialCards = document.getElementById('testimonial-cards');
-    const prevBtn = document.getElementById('testimonial-prev');
-    const nextBtn = document.getElementById('testimonial-next');
+  const testimonialCards = document.getElementById('testimonial-cards');
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
 
-    if (!testimonialCards || !prevBtn || !nextBtn) return;
+  if (!testimonialCards || !prevBtn || !nextBtn) return;
 
-    const cards = testimonialCards.querySelectorAll('.testimony-card');
-    const totalCards = cards.length;
-    let currentIndex = 1; // Start from second position
+  const cards = testimonialCards.querySelectorAll('.testimony-card');
+  const totalCards = cards.length;
+  let currentIndex = 1; // Start at first card
 
-// Initialize carousel position on load
-setTimeout(updateCarousel, 100);
+  const gap = 24; // px gap between cards (consistent with CSS)
 
+  // Compute cards per view and card width based on viewport
+  function getViewportInfo() {
+    const containerWidth = testimonialCards.parentElement.offsetWidth;
+    let cardsPerView, cardWidth;
 
-    function getViewportInfo() {
-        const containerWidth = testimonialCards.parentElement.offsetWidth;
-        let cardsPerView, cardWidth;
-
-        if (window.innerWidth <= 768) {
-            cardsPerView = 1;
-            cardWidth = containerWidth;
-        } else if (window.innerWidth <= 1024) {
-            cardsPerView = 2;
-            cardWidth = 320;
-        } else if (window.innerWidth <= 1200) {
-            cardsPerView = 3;
-            cardWidth = 300;
-        } else {
-            cardsPerView = 3;
-            cardWidth = 320;
-        }
-
-        return { cardsPerView, cardWidth };
+    if (window.innerWidth <= 768) {
+      cardsPerView = 1;
+      cardWidth = containerWidth; // full container width on mobile
+    } else if (window.innerWidth <= 1024) {
+      cardsPerView = 2;
+      cardWidth = 320; // fixed width for medium screens
+    } else if (window.innerWidth <= 1200) {
+      cardsPerView = 3;
+      cardWidth = 300; // slight smaller cards on small desktops
+    } else {
+      cardsPerView = 3;
+      cardWidth = 320; // standard desktop width
     }
 
-    function updateCarousel() {
-        const { cardsPerView, cardWidth } = getViewportInfo();
-        const gap = 24; // 1.5rem gap in px
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
+    return { cardsPerView, cardWidth };
+  }
 
-        currentIndex = Math.min(currentIndex, maxIndex);
-        currentIndex = Math.max(currentIndex, 0);
+  function clampIndex(index, maxIndex) {
+    if (index < 0) return 0;
+    if (index > maxIndex) return maxIndex;
+    return index;
+  }
 
-        const translateX = currentIndex * (cardWidth + gap);
+  function updateCarousel() {
+    const { cardsPerView, cardWidth } = getViewportInfo();
+    const maxIndex = Math.max(0, totalCards - cardsPerView);
 
-        testimonialCards.style.transform = `translateX(-${translateX}px)`;
+    currentIndex = clampIndex(currentIndex, maxIndex);
 
-        prevBtn.disabled = currentIndex <= 0;
-        nextBtn.disabled = currentIndex >= maxIndex;
+    // Calculate total slide distance including gaps (gap after every card except last)
+    // So translateX = currentIndex * (cardWidth + gap)
+    const translateX = currentIndex * (cardWidth + gap);
+
+    // Apply smooth transform
+    testimonialCards.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+    testimonialCards.style.transform = `translateX(-${translateX}px)`;
+
+    // Disable buttons at boundaries
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === maxIndex;
+
+    // Optional: visually dim disabled buttons for feedback
+    prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
+    nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
+  }
+
+  function goToPrev() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCarousel();
     }
+  }
 
-    function goToPrev() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        }
+  function goToNext() {
+    const { cardsPerView } = getViewportInfo();
+    const maxIndex = Math.max(0, totalCards - cardsPerView);
+    if (currentIndex < maxIndex) {
+      currentIndex++;
+      updateCarousel();
     }
+  }
 
-    function goToNext() {
-        const { cardsPerView } = getViewportInfo();
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-            updateCarousel();
-        }
-    }
+  prevBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    goToPrev();
+  });
 
-    prevBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        goToPrev();
-    });
+  nextBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    goToNext();
+  });
 
-    nextBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        goToNext();
-    });
+  // Debounced resize handler to recalc layout and reset index if needed
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Reset index if current index might be out of bounds after resize
+      const { cardsPerView } = getViewportInfo();
+      const maxIndex = Math.max(0, totalCards - cardsPerView);
 
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            currentIndex = 0;
-            updateCarousel();
-        }, 150);
-    });
+      // Keep currentIndex but clamp it
+      currentIndex = clampIndex(currentIndex, maxIndex);
 
-    // Initialize carousel position on load
-    setTimeout(updateCarousel, 100);
+      updateCarousel();
+    }, 200);
+  });
+
+  // Initialize on page load
+  updateCarousel();
 });
-
 
 </script>
 
