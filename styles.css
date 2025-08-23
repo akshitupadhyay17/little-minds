@@ -5713,3 +5713,61 @@ body.dark-mode .testimonial-nav-btn:disabled {
   box-shadow: none;
   cursor: not-allowed;
 }
+
+
+/* Global floating elements container */
+.timescape-floating-elements {
+  position: fixed; /* fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* allow clicks through */
+  z-index: 0; /* behind all content */
+  opacity: 0.1; /* subtle opacity, adjust as needed */
+  overflow: visible;
+}
+
+/* Ensure floating elements images are sized & animated similarly */
+.timescape-floating-element {
+  position: absolute;
+  /* retain inline styles for positions */
+  transition: opacity 0.3s ease;
+}
+
+.main-content {
+  position: relative;  /* ensure stacking context */
+  z-index: 1;          /* above floating elements */
+}
+
+.timescape-floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  
+  /* Height restricted dynamically by footer height or to viewport minus footer height */
+  height: calc(100vh - 120px); /* adjust 120px to your footer height */
+  
+  pointer-events: none;
+  z-index: 0;            /* below main content */
+  opacity: 0.1;
+  overflow: visible;
+}
+
+.footer {
+  position: relative;
+  z-index: 2;            /* highest layer to cover floating elements */
+}
+
+.timescape-floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25; /* increased from 0.15 */
+  overflow: visible;
+}
