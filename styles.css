@@ -5572,3 +5572,15 @@ body.dark-mode .top-arrow-btn:hover {
     background-position: center;
     background-size: 32px 32px; /* Increased from 24px to 32px */
 }
+
+.top-arrow-btn {
+    /* Your existing styles... */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s, transform 0.15s;
+}
+
+.top-arrow-btn.visible {
+    opacity: 1;
+    visibility: visible;
+}

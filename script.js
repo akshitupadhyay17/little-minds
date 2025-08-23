@@ -486,3 +486,23 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Top arrow button smooth scroll functionality
+document.getElementById('topArrowBtn').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link behavior
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Optional: Show/hide button based on scroll position
+window.addEventListener('scroll', function() {
+    const topArrowBtn = document.getElementById('topArrowBtn');
+    if (window.pageYOffset > 300) { // Show button after scrolling 300px
+        topArrowBtn.style.opacity = '1';
+        topArrowBtn.style.visibility = 'visible';
+    } else {
+        topArrowBtn.style.opacity = '0';
+        topArrowBtn.style.visibility = 'hidden';
+    }
+});
