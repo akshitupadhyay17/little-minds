@@ -5035,3 +5035,92 @@ body.dark-mode .mobile-hero {
     }
 }
 
+.location-text {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* Ensure it stays yellow in dark mode too */
+body.dark-mode .location-text {
+    color: var(--accent-gold) !important;
+}
+
+/* Footer registration section */
+.footer-registration {
+    text-align: center;
+    padding: 1.5rem 0 1rem;
+    margin-top: 1rem;
+}
+
+.footer-registration p {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    font-family: var(--font-secondary);
+}
+
+/* Dark mode support for registration text */
+body.dark-mode .footer-registration p {
+    color: var(--accent-gold) !important;
+}
+
+/* Adjust footer bottom padding to account for new section */
+.footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem; /* Reduced from 2rem since we have registration section above */
+    border-top: 1px solid rgba(255, 214, 0, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .footer-registration {
+        padding: 1rem 0 0.5rem;
+    }
+    
+    .footer-registration p {
+        font-size: 1rem;
+        padding: 0 1rem;
+        line-height: 1.4;
+    }
+    
+    .footer-bottom {
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-registration p {
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
+    }
+}
+
+/* Fix for social section paragraph visibility - SINGLE LINE VERSION */
+.social-section .section-title p {
+    white-space: nowrap !important; /* Keep text in one line */
+    overflow: visible !important; /* Show all content */
+    text-overflow: initial !important; /* Remove ellipsis */
+    max-width: none !important; /* Remove width restriction */
+    line-height: 1.6 !important; /* Better line spacing */
+    font-size: 1.1rem !important; /* Maintain readable size */
+}
+
+/* Mobile responsive fix - allow wrapping on smaller screens */
+@media (max-width: 768px) {
+    .social-section .section-title p {
+        white-space: normal !important; /* Allow wrapping on mobile */
+        max-width: 100% !important;
+        padding: 0 1rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-section .section-title p {
+        font-size: 0.95rem !important;
+        padding: 0 0.5rem !important;
+    }
+}
