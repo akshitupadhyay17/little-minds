@@ -5463,3 +5463,112 @@ body {
         word-break: break-all; /* Break long email if absolutely necessary */
     }
 }
+
+.top-arrow-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 22px;
+    z-index: 980;
+    background: var(--accent-gold);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(40, 32, 108, 0.21);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    /* Remove the old text-based arrow */
+    font-size: 0; /* Hide any text content */
+    color: transparent; /* Make text invisible */
+    /* Add the custom arrow image */
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px; /* Adjust size as needed */
+}
+
+.top-arrow-btn:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px) scale(1.08);
+    /* Keep the same background image on hover */
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+}
+
+/* Remove any pseudo-elements that might contain arrows */
+.top-arrow-btn::before,
+.top-arrow-btn::after {
+    display: none;
+    content: none;
+}
+
+/* Dark mode support - keep same arrow image */
+body.dark-mode .top-arrow-btn {
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+}
+
+body.dark-mode .top-arrow-btn:hover {
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px 24px;
+}
+
+.top-arrow-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 22px;
+    z-index: 980;
+    background: var(--accent-gold);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(40, 32, 108, 0.21);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    /* Remove the old text-based arrow */
+    font-size: 0;
+    color: transparent;
+    /* Add the custom arrow image with increased size */
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px 32px; /* Increased from 24px to 32px */
+}
+
+.top-arrow-btn:hover {
+    background-color: var(--accent-gold-hover);
+    transform: translateY(-2px) scale(1.08);
+    /* Keep the same larger arrow image on hover */
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px 32px; /* Increased from 24px to 32px */
+}
+
+/* Dark mode support - keep same larger arrow image */
+body.dark-mode .top-arrow-btn {
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px 32px; /* Increased from 24px to 32px */
+}
+
+body.dark-mode .top-arrow-btn:hover {
+    background-image: url('img/up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px 32px; /* Increased from 24px to 32px */
+}
