@@ -5771,3 +5771,123 @@ body.dark-mode .testimonial-nav-btn:disabled {
   opacity: 0.25; /* increased from 0.15 */
   overflow: visible;
 }
+
+@keyframes revolveCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.mobile-hero::before {
+  /* existing sparkle styles... */
+
+  /* Add these for circular revolution */
+  transform-origin: center center;
+  animation: revolveCircle 30s linear infinite;
+}
+.mobile-hero::before {
+    /* existing styles here... */
+    animation:
+      sparkle 20s linear infinite,
+      revolve 40s linear infinite;
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* New revolve keyframes for full 360° rotation */
+@keyframes revolve {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.mobile-hero::after {
+    /* existing styles here... */
+    animation:
+      patternMove 25s linear infinite,
+      revolve 60s linear reverse infinite;
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.mobile-hero::before {
+    content: '';
+    position: absolute;
+    /* Make it larger to cover all rotations */
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Sparkle repeated radial patterns */
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 214, 0, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(112, 60, 225, 0.8), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 214, 0, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.4), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    
+    /* Add rotate animation for perpetual rotation */
+    animation: sparkle 20s linear infinite, revolve 30s linear infinite;
+    transform-origin: 50% 50%; /* rotate around center */
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+/* Floating sparkle animation (small movements) */
+@keyframes sparkle {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-5px) translateX(-3px); }
+    75% { transform: translateY(-15px) translateX(8px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Revolving full 360 degree rotation */
+@keyframes revolve {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.mobile-hero::before {
+    content: '';
+    position: absolute;
+    top: -75%;      /* increased offset */
+    left: -75%;     /* increased offset */
+    width: 250%;    /* increased size */
+    height: 250%;   /* increased size */
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 214, 0, 0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(112, 60, 225, 0.8), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 214, 0, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.4), transparent);
+    background-repeat: repeat;
+    background-size: 150px 75px; /* smaller sizes for tighter sparkle */
+
+    animation: sparkle 20s linear infinite, revolve 30s linear infinite;
+    transform-origin: 50% 50%;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px) translateX(0px); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(-5px) translateX(-3px); }
+    75% { transform: translateY(-15px) translateX(8px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+@keyframes revolve {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

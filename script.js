@@ -506,3 +506,4 @@ window.addEventListener('scroll', function() {
         topArrowBtn.style.visibility = 'hidden';
     }
 });
+
