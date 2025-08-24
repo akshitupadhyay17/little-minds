@@ -399,12 +399,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const body = document.body;
     
-    // Check for saved dark mode preference or default to light mode
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        updateToggleIcon(savedTheme === 'dark');
-    }
+if (savedTheme) {
+    body.classList.toggle('dark-mode', savedTheme === 'dark');
+    updateToggleIcon(savedTheme === 'dark');
+} else {
+    body.classList.add('dark-mode'); // Default to dark mode
+    updateToggleIcon(true);
+}
+
     
     // Dark mode toggle functionality
     if (darkModeToggle) {
