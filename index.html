@@ -887,63 +887,95 @@
   </div>
 
   <div class="contact-right">
-    <div class="contact-form-container">
-      <h3>Admission Inquiry Form</h3>
-      <form class="contact-form" action="#" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="childName">Child's Name *</label>
-            <input type="text" id="childName" name="childName" required placeholder="Enter child's full name">
-          </div>
-          <div class="form-group">
-            <label for="dob">Date of Birth *</label>
-            <input type="text" id="dob" name="dob" required placeholder="DD/MM/YYYY" inputmode="numeric" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="gender">Gender *</label>
-            <select id="gender" name="gender" required>
-              <option value="">Select</option>
-              <option>Girl</option>
-              <option>Boy</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="parentName">Parent's Name *</label>
-            <input type="text" id="parentName" name="parentName" required placeholder="Enter parent's full name">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="contactNumber">Contact Number *</label>
-            <input type="tel" id="contactNumber" name="contactNumber" required placeholder="Enter primary phone no." inputmode="tel" pattern="^[0-9()+ -]{6,}$">
-          </div>
-          <div class="form-group">
-            <label for="whatsappNumber">WhatsApp Number (if different)</label>
-            <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="Enter WhatsApp number" inputmode="tel" pattern="^[0-9()+ -]{6,}$">
-          </div>
-        </div>
-
+  <div class="contact-form-container">
+    <h3>Admission Inquiry Form</h3>
+    <form class="contact-form" id="admissionForm" action="https://formspree.io/f/mzzabbka" method="POST">
+      <div class="form-row">
         <div class="form-group">
-          <label for="location">Location of Residence *</label>
-          <input type="text" id="location" name="location" required placeholder="Area / Locality / City">
+          <label for="childName">Child's Name *</label>
+          <input type="text" id="childName" name="childName" required placeholder="Enter child's full name">
         </div>
-
         <div class="form-group">
-          <label for="notes">Anything you wish to mention about your child?</label>
-          <textarea id="notes" name="notes" rows="4" placeholder="Share any details you'd like us to know..."></textarea>
+          <label for="dob">Date of Birth *</label>
+          <input type="text" id="dob" name="dob" required placeholder="DD/MM/YYYY" inputmode="numeric" pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$">
         </div>
+      </div>
 
-        <button type="submit" class="submit-btn">
-          <i class="fas fa-paper-plane"></i>
-          Submit Inquiry
-        </button>
-      </form>
-    </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="gender">Gender *</label>
+          <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option>Girl</option>
+            <option>Boy</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="parentName">Parent's Name *</label>
+          <input type="text" id="parentName" name="parentName" required placeholder="Enter parent's full name">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contactNumber">Contact Number *</label>
+          <input type="tel" id="contactNumber" name="contactNumber" required placeholder="Enter primary phone no." inputmode="tel" pattern="^[0-9()+ -]{6,}$">
+        </div>
+        <div class="form-group">
+          <label for="whatsappNumber">WhatsApp Number (if different)</label>
+          <input type="tel" id="whatsappNumber" name="whatsappNumber" placeholder="Enter WhatsApp number" inputmode="tel" pattern="^[0-9()+ -]{6,}$">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location of Residence *</label>
+        <input type="text" id="location" name="location" required placeholder="Area / Locality / City">
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Anything you wish to mention about your child?</label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Share any details you'd like us to know..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <i class="fas fa-paper-plane"></i> Submit Inquiry
+      </button>
+    </form>
+
+    <p id="formMessage" style="margin-top: 10px; display: none; color: green; font-weight: bold;">
+      Thank you! Your inquiry has been submitted successfully.
+    </p>
   </div>
+</div>
+
+<script>
+  const form = document.getElementById('admissionForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(form);
+    const action = form.action;
+
+    const response = await fetch(action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      formMessage.style.display = 'block';
+      formMessage.style.color = 'green';
+      formMessage.textContent = 'Thank you! Your inquiry has been submitted successfully.';
+    } else {
+      formMessage.style.display = 'block';
+      formMessage.style.color = 'red';
+      formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+    }
+  });
+</script>
 </div>
 
         </div>
